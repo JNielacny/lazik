@@ -1,3 +1,6 @@
+#ifndef LAZIK_HH
+#define LAZIK_HH
+
 #include "ObiektGeom.hh"
 
 class Lazik: public ObiektGeom
@@ -22,3 +25,4 @@ class Lazik: public ObiektGeom
     double &set_kat(){return kat;}
     double &set_dlugosc(){return dlugosc;}
 };
+#endif
