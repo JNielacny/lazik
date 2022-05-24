@@ -1,0 +1,99 @@
+/*!
+ \mainpage Wizualizacja niektórych elementów misji MSR
+
+ \author Jan Kowalski
+ \date   2022.05.04
+ \version 0.1
+
+ \section charakterystyka Charakterystyka misji MSR (Mars sample-return)
+
+
+
+Obecnie trwają przygotowania prowadzone przez NASA i ESA
+(tzn. amerykańskiej i europejskiej agencji kosmicznej) wspólnej misji mającej na celu
+przetransportowanie na Ziemię próbek regolitu, które aktualnie
+pobiera łazik Perseverance.
+
+ \image html Mars_Sample_Return_Mission.jpg "Artystyczna wizja misji"
+
+
+Europejska Agencja Kosmiczna oprócz rakiety Ariane 64 zbuduje orbitera
+ERO (ang. Earth Return Orbiter)
+oraz łazik SFR (ang. Sample Fetch Rover), który ma zebrać próbki
+i dostarczyć do specjalnego zasobnika rakiety powrotnej.
+
+
+ \image html FSR.jpg "FSR w trakcie zbierania tubek z próbkami"
+
+Po zebraniu
+próbek ma ona zostać wystrzelona na orbitę Marsa. Tam, zadokuje do ERO,
+a następnie próbki zostaną przeniesione do modułu powrotnego znajdującego
+się w ERO.
+Po wykonaniu tej operacji ERO z orbity Marsa skieruje się w drogę powrotną ku Ziemi.
+Początek misji planuje się na rok 2027. Lądowanie modułu powrotnego na Ziemi
+wstępnie planuje się na rok 2033. Lądownik oraz rakieta wystrzeliwana z Marsa
+są konstruowane przez NASA.
+
+
+
+
+ \section usecase-diagram Diagram przypadków użycia
+
+Diagram użycia w tym zadaniu obrazuje operacja jakie użytkownik może żądać od aplikacji.
+Może on też pokazywać jakie dodatkwe operacje są niezbędne do realizacji danego żądania.
+Zestaw operacji, które może żądać użytkownik, w tym przypadku odpowiadają pozycjom menu aplikacji.
+
+ \image html  inkscape-diagram_przypadkow_uzycia-mars.svg "Diagram przypadków użycia dla aplikacji"
+
+ \section class-diagram  Diagram podstawowych klas
+
+
+Poniżej przedstawiony jest diagram klas, który traktowany jest jako punkt wyjścia dla tworzonej
+aplikacji. Interfejsy poszczególnych klas zostały ograniczone tylko do najważniejszego zestawu
+metod. Nie należy więc traktować jako kompletnego diagramu.
+
+
+ \image html  inkscape-diagram_klas-faza1.svg  "Diagram klas z ważniejszymi metodami"
+
+
+ \section activity-diagram  Diagramy czynności dla wybranych metod
+
+
+Kluczowym elementem odpowiedniej wizualizacji jest przeliczanie współrzędnych
+brył, które modelują poszczególne łaziki i zapisania ich w osobnym pliku
+odpowiadającej każdej bryle. Te pliki wykorzystywane są przez dostarczony
+moduł \p lacze_do_gnuplota do właściwego rysowania.
+W celu uniknięcia kumulacji błędów obliczeń, przeliczenia trzeba wykonywać zawsze
+dysponując obiektami/bryłami wzorcowymi.
+Tak więc w tym konkretnym przypadku wygenerowanie rysunku bryły sprowadza się
+do przeczytania z pliku bryły wzorcowej współrzędnych kolejnych wierzchołków,
+a następnie po uwzględnieniu skali docelowego obiektu, jego orientacji i położenia,
+wyliczenia nowych wartości wierzchołków i zapisanie ich do pliku
+odpowiadającemu bryle docelowej. To znaczy tej, która będzie narysowana.
+Ważne jest, aby zapisywać współrzędne wierzchołków w osobnych liniach.
+Ponadto po każdych czterech zapisanych współrzędnych wierzchołków
+należy dodać dodatkową wolną linię. Wynika to ze sposobu rysowania
+powierzchni bryły, który zostanie wyjaśniony na wykładzie.
+Zapis przedstawionego algorytmu został zdekomponowany na dwie operacje
+tzn.%
+  \li  ObiektGeom::Przelicz_i_Zapisz_Wierzcholki(),
+  \li  ObiektGeom::Przelicz_i_Zapisz_Wierzcholki(std::istream &, std::ostream &).
+  
+Pozwala to osiągnąć lepszą czytelność zarówno na poziomie diagramów, jak też w kodzie.
+Tym samym minimalizuje źródła błędów. Dlatego też jest to bardzo ważne.
+Diagramy czynności dla tych metod są przedstawione na poniższych diagramach.
+
+ 
+ \image html  inkscape-diagram-czynnosci-obliczanie_wspolrzednych_wierzcholkow-0.svg "Diagram czynności dla metody ObiektGeom::Przelicz_i_Zapisz_Wierzcholki()"
+
+
+ Ideę działania metody \p Dron::Oblicz_i_Zapisz_WspGlbRotora(.) prezentuje dalszy diagram czynności.
+ Diagram ten pokazuje kolejne operacje związane z przeskalowaniem wierzchołków bryły geometrycznej.
+ Następnie, przeliczenie i przejście do układu współrzędnych lokalnych drona. W dalszej kolejności
+ ponowne przeliczenie i przejście do układu współrzędnych globalnych sceny.
+
+ \image html  inkscape-diagram-czynnosci-obliczanie_wspolrzednych_wierzcholkow-1.svg "Diagram czynności dla metody ObiektGeom::Przelicz_i_Zapisz_Wierzcholki(std::istream &, std::ostream &)"
+
+*/
+
+

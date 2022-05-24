@@ -1,0 +1,25 @@
+Przykład demonstruje operacje jakie należy wykonać,
+aby stworzyć wizualizację przejazdu łazika. Można go
+potraktować jako zalążek do zadania. Należy pamiętać
+jednak, że dostarczony kod nie jest pisany obiektowo
+i wymaga gruntownej przebudowy, aby dostosować go
+do wymogów zadania.
+
+Aby skorzystać z niniejszego przykładu,
+należy przekopiować cala zawartość kartoteki
+do swojej własnej, np.
+
+  cp ~bk/edu/kpo/zad/z6-1/przyklad-animacji-lazika  ~
+
+Kartoteki:
+ pliki_do_rysowania/   - jest to kartoteka robocza, w której składowane są
+                         pliki, które zawierają wyliczone współrzędne
+	          wierzchołków brył. Są one wykorzystywane przez
+		  program gnuplot do rysowania brył.
+		  Kartoteka ta jest tworzona po pierwszym uruchomieniu
+		  polecenia make, o ile nie została wcześniej już
+		  utworzona. Zawartość katalogu jest modyfikowna
+		  w trakcie działania programu.
+
+ bryly_wzorcowe/ - zawiera zestaw brył wzorcowych. Zawartość katalogu
+                  nie jest modyfikowna w trakcie działania programu.
