@@ -36,7 +36,7 @@ class ObiektGeom {
     int           _KolorID;
     UklWsp Ukl;
     public:
-    ObiektGeom(){}
+    ObiektGeom(){};
     ObiektGeom(const char* sNazwaPliku_BrylaWzorcowa, const char* sNazwaObiektu, int KolorID);
 
     int WezKolorID() const { return _KolorID; }

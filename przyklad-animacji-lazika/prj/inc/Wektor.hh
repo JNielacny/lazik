@@ -40,7 +40,7 @@ class Wektor {
 
 /*
  * To przeciazenie trzeba opisac. Co ono robi. Jaki format
- * danych akceptuje. Jakie jest znaczenie parametrow itd.
+ * danych akceptuje. Jakies jest znaczenie parametrow itd.
  * Szczegoly dotyczace zalecen realizacji opisow mozna
  * znalezc w pliku:
  *    ~bk/edu/kpo/zalecenia.txt 
@@ -51,8 +51,10 @@ template <typename STyp, int SWymiar>
 Wektor<STyp,SWymiar> Wektor<STyp,SWymiar>::operator ^(Wektor const Skl)
 {
   Wektor Wynik;
-  for(int i = 0; i<SWymiar; i++)
-    Wynik[i] = Tab[i] * Skl[i];
+  for(int x = 0; x<SWymiar; x++)
+    Wynik[x] = Tab[x] * Skl[x];
+  
+  return Wynik;
 }
 
 template <typename STyp, int SWymiar>

@@ -30,6 +30,7 @@ class scena
     scena()
     {
         Inicjalizuj_Lacze();
+        Inicjalizuj_PowierzchnieMarsa(Lacze);
 
         shared_ptr<Lazik>  Ob1;
             Ob1 = make_shared<Lazik>("bryly_wzorcowe/szescian3.dat","FSR",Kolor_JasnoNiebieski);
@@ -44,14 +45,26 @@ class scena
                 ListaObiektow.push_back(Ob3);
     
         ten = Ob1;
+
+        Lacze.Rysuj();
     }
 
-    shared_ptr<Lazik> get_Lazik(int p)
+    void Rysuj()
     {
-    int k=0;
-        list<shared_ptr<Lazik>>::iterator i=ListaObiektow.begin(); 
-            for(;k<p; p++, i++)
-            return *i;
+        Wek3D wektor;
+            wektor[0]=20;
+            wektor[1]=20;
+            wektor[2]=20;
+        
+        for(list<shared_ptr<Lazik>>::iterator i=ListaObiektow.begin(); i!=ListaObiektow.end(); i++)
+        {
+            (*i)->set_skala() = wektor;
+            (*i)->Przelicz_i_Zapisz_Wierzcholki();
+        }
+
+        Lacze.Rysuj();
+        cout << "Nacisnij klawisz ENTER, aby zakonczyc." << endl;
+        cin.ignore(100,'\n');
     }
 
     void DodajDoListyRysowania()
@@ -62,5 +75,16 @@ class scena
             wInfoPliku = &Lacze.DodajNazwePliku((*i)->WezNazwePliku_BrylaRysowana());
             wInfoPliku->ZmienKolor((*i)->WezKolorID());
         }
+    }
+    
+    shared_ptr<Lazik> get_Lazik(int p)
+    {
+    int k=0;
+        list<shared_ptr<Lazik>>::iterator i=ListaObiektow.begin(); 
+            for(;k<p; p++, i++)
+            {
+                cout<<(*i)->WezNazweObiektu() << endl;
+            }
+            return *i;
     }
 };
