@@ -21,12 +21,7 @@ ObiektGeom::ObiektGeom( const char*  sNazwaPliku_BrylaWzorcowa,
 
 
 
-bool ObiektGeom::Przelicz_i_Zapisz_Wierzcholki(
-				      double  SkalaX, double SkalaY, double SkalaZ,
-				      double  PolozenieX,
-				      double  PolozenieY,
-				      double  PolozenieZ
-				    )
+bool ObiektGeom::Przelicz_i_Zapisz_Wierzcholki()
 {
   ifstream  StrmWe(_NazwaPliku_BrylaWzorcowa);
   ofstream  StrmWy(_NazwaPliku_BrylaRysowana);
@@ -39,18 +34,15 @@ bool ObiektGeom::Przelicz_i_Zapisz_Wierzcholki(
     return false;
   }
 
-  double  WspX, WspY, WspZ;
   int Indeks_Wiersza = 0;
   
-  StrmWe >> WspX >> WspY >> WspZ;
+  StrmWe >> Ukl.set_wsp();
 
   if (StrmWe.fail())return false;
   
   do {
-    WspX = WspX*SkalaX+PolozenieX;
-    WspY = WspY*SkalaY+PolozenieY;    
-    WspZ = WspZ*SkalaZ+PolozenieZ;
-    StrmWy << WspX << " " << WspY << " " << WspZ << endl;
+    Ukl.set_wsp() = Ukl.get_wsp() + Ukl.get_przesuniecia();
+    StrmWy << Ukl.get_wsp() << endl;
     ++Indeks_Wiersza;
     
     if (Indeks_Wiersza >= 4) {
@@ -58,7 +50,7 @@ bool ObiektGeom::Przelicz_i_Zapisz_Wierzcholki(
       Indeks_Wiersza = 0;
     }
     
-    StrmWe >> WspX >> WspY >> WspZ;
+    StrmWe >> Ukl.set_wsp();
     
   } while (!StrmWe.fail());
 
