@@ -29,13 +29,13 @@ class UklWsp
 };
 
 class ObiektGeom {
+    private:
     string   _NazwaPliku_BrylaWzorcowa;
     string   _NazwaPliku_BrylaRysowana;
     string   _NazwaObiektu;
     int           _KolorID;
     UklWsp Ukl;
-  public:
-
+    public:
     ObiektGeom(const char* sNazwaPliku_BrylaWzorcowa, const char* sNazwaObiektu, int KolorID);
 
     int WezKolorID() const { return _KolorID; }
@@ -46,12 +46,13 @@ class ObiektGeom {
                  { return _NazwaPliku_BrylaRysowana; }
 
     bool Przelicz_i_Zapisz_Wierzcholki(
-                  ostream &StrmWyj, 
-                  istream &StrmWej
+                  ostream &StrmWy, 
+                  istream &StrmWe
                   );
     bool Przelicz_i_Zapisz_Wierzcholki();
 
-				     
+    Wek3D &set_skala(){return Ukl.set_skala();}
+    Wek3D &set_przesuniecia(){return Ukl.set_przesuniecia();}
 };
 
 

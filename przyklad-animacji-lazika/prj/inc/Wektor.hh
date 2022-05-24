@@ -29,6 +29,7 @@ class Wektor {
   STyp &operator [](int x);
   STyp operator [](int x) const;
 
+  Wektor operator ^(Wektor const Skl);
   Wektor operator +(Wektor Wart);  /*Wart w sensie wartość komórki*/
   Wektor operator -(Wektor Wart);
   Wektor operator *(STyp Wart);
@@ -44,6 +45,16 @@ class Wektor {
  * znalezc w pliku:
  *    ~bk/edu/kpo/zalecenia.txt 
  */
+
+template <typename STyp, int SWymiar>
+
+Wektor<STyp,SWymiar> Wektor<STyp,SWymiar>::operator ^(Wektor const Skl)
+{
+  Wektor Wynik;
+  for(int i = 0; i<SWymiar; i++)
+    Wynik[i] = Tab[i] * Skl[i];
+}
+
 template <typename STyp, int SWymiar>
 
 std::istream& operator >> (std::istream &Strm, Wektor<STyp, SWymiar> &Wek);
