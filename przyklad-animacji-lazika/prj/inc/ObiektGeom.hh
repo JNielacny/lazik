@@ -11,7 +11,7 @@ using namespace std;
 
 class UklWsp
 {
-    private:
+    protected:
     Wek3D wsp;
     Wek3D skala;
     Wek3D przesuniecia;
@@ -36,6 +36,7 @@ class ObiektGeom {
     int           _KolorID;
     UklWsp Ukl;
     public:
+    ObiektGeom(){}
     ObiektGeom(const char* sNazwaPliku_BrylaWzorcowa, const char* sNazwaObiektu, int KolorID);
 
     int WezKolorID() const { return _KolorID; }
