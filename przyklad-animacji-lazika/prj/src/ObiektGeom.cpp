@@ -1,7 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include "ObiektGeom.hh"
-
+#include "scena.hh"
 
 
 using namespace std;
@@ -65,8 +65,10 @@ bool ObiektGeom::Przelicz_i_Zapisz_Wierzcholki()
   StrmWe >> Ukl.set_wsp();
 
   if (StrmWe.fail())return false;
-  
+    if(zadany>0)
+    Ukl.odswiez();
   do {
+    Ukl.set_wsp()=Ukl.get_MacObrotu()*Ukl.get_wsp();
     Ukl.set_wsp() = Ukl.get_wsp()^Ukl.get_skala() + Ukl.get_przesuniecia();
     StrmWy << Ukl.get_wsp() << endl;
     ++Indeks_Wiersza;
@@ -81,6 +83,6 @@ bool ObiektGeom::Przelicz_i_Zapisz_Wierzcholki()
   } while (!StrmWe.fail());
 
   if (!StrmWe.eof()) return false;
-  
+  zadany =0;  
   return Indeks_Wiersza == 0 && !StrmWy.fail();
 }

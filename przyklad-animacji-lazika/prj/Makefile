@@ -16,8 +16,8 @@ pliki_do_rysowania:
 	mkdir pliki_do_rysowania
 
 
-./${APP}: obj/main.o obj/lacze_do_gnuplota.o obj/PowierzchniaMarsa.o obj/ObiektGeom.o
-	g++ -o ./${APP} obj/main.o obj/lacze_do_gnuplota.o obj/PowierzchniaMarsa.o\
+./${APP}: obj/main.o obj/lacze_do_gnuplota.o obj/PowierzchniaMarsa.o obj/Macierz.o obj/ObiektGeom.o
+	g++ -o ./${APP} obj/main.o obj/lacze_do_gnuplota.o obj/PowierzchniaMarsa.o obj/Macierz.o\
                         obj/ObiektGeom.o
 
 
@@ -31,9 +31,17 @@ obj/lacze_do_gnuplota.o: src/lacze_do_gnuplota.cpp inc/lacze_do_gnuplota.hh
 obj/PowierzchniaMarsa.o: src/PowierzchniaMarsa.cpp inc/PowierzchniaMarsa.hh inc/lacze_do_gnuplota.hh
 	g++  -Iinc -W -Wall -pedantic -c -o obj/PowierzchniaMarsa.o src/PowierzchniaMarsa.cpp
 
+obj/scena.o: src/scena.cpp inc/scena.hh inc/lacze_do_gnuplota.hh
+	g++  -Iinc -W -Wall -pedantic -c -o obj/scena.o src/scena.cpp
+
+obj/Macierz.o: src/Macierz.cpp inc/Macierz.hh
+	g++  -Iinc -W -Wall -pedantic -c -o obj/Macierz.o src/Macierz.cpp
+
+obj/Wektor.o: src/Wektor.cpp inc/Wektor.hh
+	g++ -Iinc -W -Wall -pedantic -c -o obj/Wektor.o src/Wektor.cpp
+
 obj/ObiektGeom.o: src/ObiektGeom.cpp inc/ObiektGeom.hh inc/lacze_do_gnuplota.hh
 	g++  -Iinc -W -Wall -pedantic -c -o obj/ObiektGeom.o src/ObiektGeom.cpp
-
 
 clean:
 	rm -f obj/* ./${APP} core.* core liki_do_rysowania/*

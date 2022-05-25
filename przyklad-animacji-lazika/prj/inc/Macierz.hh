@@ -3,7 +3,7 @@
 
 #include "Wektor.hh"
 #include <iostream>
-
+#include <cmath>
 
 /*
  *  Tutaj trzeba opisac klase. Jakie pojecie modeluje ta klasa
@@ -103,5 +103,7 @@ std::ostream& operator << (std::ostream &Strm, const Macierz<STyp, SWymiar> &Mat
   }
 
 typedef Macierz<double,3> Mac3D;
+
+Mac3D RotacjaZ(double kat);
 
 #endif
