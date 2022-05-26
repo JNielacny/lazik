@@ -27,5 +27,6 @@ int main()
   scena Scena;
 
   Scena.DodajDoListyRysowania();
-  Scena.Rysuj(); 
+  Scena.Rysuj();
+
 }

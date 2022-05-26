@@ -18,34 +18,47 @@ using namespace std;
     
     scena::scena()
     {
+        Wek3D przesun;
+        przesun[0]=50;
         Inicjalizuj_Lacze();
         Inicjalizuj_PowierzchnieMarsa(Lacze);
 
         shared_ptr<Lazik>  Ob1;
             Ob1 = make_shared<Lazik>("bryly_wzorcowe/szescian3.dat","FSR",Kolor_JasnoNiebieski);
-                ListaObiektow.push_back(Ob1);
+                Ob1->set_przesuniecia()=przesun;
+                    ListaObiektow.push_back(Ob1);
 
         shared_ptr<Lazik>  Ob2;
             Ob2 = make_shared<Lazik>("bryly_wzorcowe/szescian3.dat","Perseverance",Kolor_Czerwony);
-                ListaObiektow.push_back(Ob2);
+                przesun[0]=-50;
+                    Ob2->set_przesuniecia()=przesun;
+                        ListaObiektow.push_back(Ob2);
      
         shared_ptr<Lazik>  Ob3;
             Ob3 = make_shared<Lazik>("bryly_wzorcowe/szescian3.dat","Curiosity",Kolor_Czerwony);  
                 ListaObiektow.push_back(Ob3);
     
-        ten = Ob1;
+        uzywany = Ob1;
 
-        Lacze.Rysuj();
     }
 
     void scena::Jedz(double kat)
     {
         for(int i=0; i<kat; i++)
         {
-            ten->Przelicz_i_Zapisz_Wierzcholki();
+            uzywany->set_zadany()=kat;
+            usleep(5000);
+            Rysuj();
         }
-        
+        for(int i=kat; i<0; i++)
+        {
+            uzywany->set_zadany()=kat;  
+            usleep(5000);
+            Rysuj();
+        }
     }
+
+
 
     void scena::Rysuj()
     {
@@ -54,18 +67,15 @@ using namespace std;
             wektor[1]=20;
             wektor[2]=10;
         
-        for(list<shared_ptr<Lazik>>::iterator i=ListaObiektow.begin(); i!=ListaObiektow.end(); i++)
+        for(list<shared_ptr<Lazik>>::iterator iter=ListaObiektow.begin(); iter!=ListaObiektow.end(); iter++)
         {
-            (*i)->set_skala() = wektor;
-            (*i)->Przelicz_i_Zapisz_Wierzcholki();
-            usleep(10000);
-            Lacze.Rysuj();
+            (*iter)->set_skala() = wektor;
+            (*iter)->Przelicz_i_Zapisz_Wierzcholki();
         }
 
-
         Lacze.Rysuj();
-        cout << "Nacisnij klawisz ENTER, aby zakonczyc." << endl;
-        cin.ignore(100,'\n');
+    /*    cout << "Nacisnij klawisz ENTER, aby zakonczyc." << endl;
+        cin.ignore(100,'\n');*/
     }
 
     void scena::DodajDoListyRysowania()
@@ -77,14 +87,4 @@ using namespace std;
             wInfoPliku->ZmienKolor((*i)->WezKolorID());
         }
     }
-    
-    shared_ptr<Lazik> scena::get_Lazik(int p)
-    {
-    int k=0;
-        list<shared_ptr<Lazik>>::iterator i=ListaObiektow.begin(); 
-            for(;k<p; p++, i++)
-            {
-                cout<<(*i)->WezNazweObiektu() << endl;
-            }
-            return *i;
-    }
+

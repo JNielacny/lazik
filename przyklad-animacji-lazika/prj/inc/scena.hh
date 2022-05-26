@@ -14,7 +14,7 @@ class scena
 {
     private:
         PzG::LaczeDoGNUPlota Lacze;
-        shared_ptr<Lazik> ten;
+        shared_ptr<Lazik> uzywany;
         list<shared_ptr<Lazik>> ListaObiektow;
 
         void Inicjalizuj_Lacze();
@@ -24,7 +24,7 @@ class scena
         void Rysuj();
         void Jedz(double kat);
         void DodajDoListyRysowania();
-        shared_ptr<Lazik> get_Lazik(int p);
+        void wypisz();
 };
 
 #endif

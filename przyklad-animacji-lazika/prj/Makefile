@@ -16,13 +16,13 @@ pliki_do_rysowania:
 	mkdir pliki_do_rysowania
 
 
-./${APP}: obj/main.o obj/lacze_do_gnuplota.o obj/PowierzchniaMarsa.o obj/Macierz.o obj/ObiektGeom.o
-	g++ -o ./${APP} obj/main.o obj/lacze_do_gnuplota.o obj/PowierzchniaMarsa.o obj/Macierz.o\
+./${APP}: obj/main.o obj/lacze_do_gnuplota.o obj/PowierzchniaMarsa.o obj/Macierz.o obj/ObiektGeom.o obj/scena.o
+	g++ -o ./${APP} obj/main.o obj/lacze_do_gnuplota.o obj/PowierzchniaMarsa.o obj/Macierz.o obj/scena.o\
                         obj/ObiektGeom.o
 
 
 obj/main.o: src/main.cpp inc/lacze_do_gnuplota.hh inc/ObiektGeom.hh inc/PowierzchniaMarsa.hh\
-            inc/Kolory.hh
+            inc/Kolory.hh inc/scena.hh
 	g++  -Iinc -W -Wall -pedantic -c -o obj/main.o src/main.cpp
 
 obj/lacze_do_gnuplota.o: src/lacze_do_gnuplota.cpp inc/lacze_do_gnuplota.hh

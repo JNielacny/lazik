@@ -46,16 +46,7 @@ class Wektor {
  *    ~bk/edu/kpo/zalecenia.txt 
  */
 
-template <typename STyp, int SWymiar>
 
-Wektor<STyp,SWymiar> Wektor<STyp,SWymiar>::operator ^(Wektor const Skl)
-{
-  Wektor Wynik;
-  for(int x = 0; x<SWymiar; x++)
-    Wynik[x] = Tab[x] * Skl[x];
-  
-  return Wynik;
-}
 
 template <typename STyp, int SWymiar>
 
@@ -131,6 +122,17 @@ std::ostream& operator << (std::ostream &Strm, const Wektor<STyp, SWymiar>  &Wek
         Iloczyn[x] = Tab[x] * Wart;
       return Iloczyn;
   }
+
+template <typename STyp, int SWymiar>
+
+Wektor<STyp,SWymiar>  Wektor<STyp, SWymiar> ::operator ^(Wektor const Skl)
+{
+  Wektor Wynik;
+  for(int x = 0; x<SWymiar; x++)
+    Wynik[x] = Tab[x] * Skl[x];
+  
+  return Wynik;
+}
 
   template <typename STyp, int SWymiar>
   Wektor<STyp, SWymiar>  Wektor<STyp, SWymiar> ::operator /(STyp Wart)
