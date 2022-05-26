@@ -77,6 +77,9 @@ class ObiektGeom {
 
     Wek3D &set_skala(){return Ukl.set_skala();}
     Wek3D &set_przesuniecia(){return Ukl.set_przesuniecia();}
+
+    Wek3D get_przesuniecia(){return Ukl.get_przesuniecia();}
+    Wek3D get_skala(){return Ukl.get_przesuniecia();}
 };
 
 

@@ -88,3 +88,21 @@ using namespace std;
         }
     }
 
+    void scena::wybordrona(int p)
+    {
+        list<shared_ptr<Lazik>>::iterator i = ListaObiektow.begin();
+        for(int k=0;k<p;k++,i++)
+        {
+            uzywany=(*i);
+        }
+    }
+
+    void scena::wypisz()
+    {
+        int k=0;
+        for (list<shared_ptr<Lazik>>::iterator i = ListaObiektow.begin();i!=ListaObiektow.end(); i++)
+        {
+            k++;
+            cout <<k<<":"<< (*i)->WezNazweObiektu() << endl;
+        }
+    }

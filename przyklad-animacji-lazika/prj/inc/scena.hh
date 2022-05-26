@@ -25,6 +25,9 @@ class scena
         void Jedz(double kat);
         void DodajDoListyRysowania();
         void wypisz();
+        void wybordrona(int k);
+        string nazwauzywanego(){return uzywany->WezNazweObiektu();}
+        Wek3D polozenieuzywanego(){return uzywany->get_przesuniecia();}
 };
 
 #endif
