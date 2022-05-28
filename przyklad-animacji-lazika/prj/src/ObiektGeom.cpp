@@ -23,13 +23,13 @@ bool ObiektGeom::Przelicz_i_Zapisz_Wierzcholki(ostream &StrmWy, istream &StrmWe)
 {
   int Indeks_Wiersza = 0;
   
-  StrmWe >> Ukl.set_wsp();
+  StrmWe >> set_wsp();
 
   if (StrmWe.fail())return false;
   
   do {
-    Ukl.set_wsp() = (Ukl.get_wsp()^Ukl.get_skala()) + Ukl.get_przesuniecia();
-    StrmWy << Ukl.get_wsp() << endl;
+    set_wsp() = (get_wsp()^get_skala()) + get_przesuniecia();
+    StrmWy << get_wsp() << endl;
     ++Indeks_Wiersza;
     
     if (Indeks_Wiersza >= 4) {
@@ -37,7 +37,7 @@ bool ObiektGeom::Przelicz_i_Zapisz_Wierzcholki(ostream &StrmWy, istream &StrmWe)
       Indeks_Wiersza = 0;
     }
     
-    StrmWe >> Ukl.set_wsp();
+    StrmWe >> set_wsp();
     
   } while (!StrmWe.fail());
 
@@ -61,17 +61,17 @@ bool ObiektGeom::Przelicz_i_Zapisz_Wierzcholki()
 
   int Indeks_Wiersza = 0;
   
-  StrmWe >> Ukl.set_wsp();
+  StrmWe >> set_wsp();
 
   if (StrmWe.fail())return false;
     if(zadany>0)
-    Ukl.odswiez();
+    odswiez();
     if(zadany<0)
-    Ukl.odswiez2();
+    odswiez2();
   do {
-    Ukl.set_wsp()=Ukl.get_MacObrotu()*Ukl.get_wsp();
-    Ukl.set_wsp() = (Ukl.get_wsp()^Ukl.get_skala()) + Ukl.get_przesuniecia();
-    StrmWy << Ukl.get_wsp() << endl;
+    set_wsp()=MacObrotu*get_wsp();
+    set_wsp() = (get_wsp()^get_skala()) + przesuniecia;
+    StrmWy << get_wsp() << endl;
     ++Indeks_Wiersza;
     
     if (Indeks_Wiersza >= 4) {
@@ -79,7 +79,7 @@ bool ObiektGeom::Przelicz_i_Zapisz_Wierzcholki()
       Indeks_Wiersza = 0;
     }
     
-    StrmWe >> Ukl.set_wsp();
+    StrmWe >> set_wsp();
     
   } while (!StrmWe.fail());
 

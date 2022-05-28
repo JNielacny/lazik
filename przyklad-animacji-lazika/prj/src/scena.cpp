@@ -42,8 +42,11 @@ using namespace std;
 
     }
 
-    void scena::Jedz(double kat)
+    void scena::porusz(double kat, double szybkosc, double ruch)
     {
+        uzywany->set_szybkosc()=szybkosc;
+        uzywany->set_dlugosc()=ruch;
+        uzywany->jedz(Lacze);
         for(int i=0; i<kat; i++)
         {
             uzywany->set_zadany()=kat;

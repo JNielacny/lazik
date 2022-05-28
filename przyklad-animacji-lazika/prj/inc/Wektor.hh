@@ -164,10 +164,8 @@ Wektor<STyp,SWymiar>  Wektor<STyp, SWymiar> ::operator ^(Wektor const Skl)
   template <typename STyp, int SWymiar>
   std::ostream &operator << (std::ostream &Strm, const Wektor<STyp, SWymiar>  &Wek)
   {
-      cout<<"|";
       for(int x=0; x<SWymiar; x++)
         Strm<<Wek[x]<<"  ";
-      cout<<"|";
       return Strm;
   }
 

@@ -2,6 +2,8 @@
 #define LAZIK_HH
 
 #include "ObiektGeom.hh"
+#include "lacze_do_gnuplota.hh"
+#include "unistd.h"
 
 class Lazik: public ObiektGeom
 {
@@ -16,6 +18,20 @@ class Lazik: public ObiektGeom
                                    sNazwaObiektu, 
                                    KolorID)
                                    {}
+    void jedz(PzG::LaczeDoGNUPlota &Lacze)
+    {
+        
+        Wek3D dane;
+        dane[0]=szybkosc;
+        set_przesuniecia()=dane;
+        for(double i=0; i<dlugosc; i+=szybkosc)
+        {
+            Przelicz_i_Zapisz_Wierzcholki();
+            Lacze.Rysuj();
+            usleep(5000);
+        }
+    }
+
     double get_szybkosc()const{return szybkosc;}
     double get_dlugosc()const{return dlugosc;}
 
