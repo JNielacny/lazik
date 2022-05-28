@@ -32,7 +32,6 @@ int main()
 {
   scena Scena;
 
-  Scena.DodajDoListyRysowania();
   Scena.Rysuj();
 
   double kat;

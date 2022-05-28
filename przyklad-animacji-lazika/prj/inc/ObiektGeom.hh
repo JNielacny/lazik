@@ -33,7 +33,6 @@ class ObiektGeom: public UklWsp
     string   _NazwaPliku_BrylaRysowana;
     string   _NazwaObiektu;
     int           _KolorID;
-    double kat;
     Wek3D przesuniecia;
     Mac3D MacObrotu; 
 
@@ -41,7 +40,6 @@ class ObiektGeom: public UklWsp
     
     public:
     ObiektGeom(){        
-        kat=0;
             for(int k=0; k<3; k++)
             MacObrotu[k][k]=1;
     };
@@ -59,26 +57,17 @@ class ObiektGeom: public UklWsp
                   );
     bool Przelicz_i_Zapisz_Wierzcholki();
 
-    void odswiez()
-    {
-        kat+=1;
-        MacObrotu=RotacjaZ(kat);
-        if(kat==360){kat=0;}
-    }
 
-    void odswiez2()
-    {
-        kat-=1;
-        MacObrotu=RotacjaZ(kat);
-        if(kat==-360){kat=0;}
-    }
-
-
+    
+    Wek3D &set_zmien_polozenie(){return przesuniecia;}
     Wek3D &set_skala(){return skala;}
     Wek3D &set_przesuniecia(){return przesuniecia;}
+    Mac3D &set_MacObrotu(){return MacObrotu;}
 
+    Wek3D get_zmien_polozenie()const{return przesuniecia;}
     Wek3D get_przesuniecia(){return przesuniecia;}
     Wek3D get_skala(){return skala;}
+    Mac3D get_MacObrotu(){return MacObrotu;}
 };
 
 

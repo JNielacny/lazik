@@ -10,6 +10,8 @@ ObiektGeom::ObiektGeom( const char*  sNazwaPliku_BrylaWzorcowa,
 		       ):
   _NazwaPliku_BrylaWzorcowa(sNazwaPliku_BrylaWzorcowa), _KolorID(KolorID)
 {
+            for(int k=0; k<3; k++)
+            MacObrotu[k][k]=1;
   zadany=0;
   _NazwaObiektu = sNazwaObiektu;
   _NazwaPliku_BrylaRysowana = NAZWA_KARTOTEKI_PLIKOW_DO_RYSOWANIA;
@@ -64,10 +66,6 @@ bool ObiektGeom::Przelicz_i_Zapisz_Wierzcholki()
   StrmWe >> set_wsp();
 
   if (StrmWe.fail())return false;
-    if(zadany>0)
-    odswiez();
-    if(zadany<0)
-    odswiez2();
   do {
     set_wsp()=MacObrotu*get_wsp();
     set_wsp() = (get_wsp()^get_skala()) + przesuniecia;

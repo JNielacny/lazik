@@ -39,26 +39,16 @@ using namespace std;
                 ListaObiektow.push_back(Ob3);
     
         uzywany = Ob1;
-
+        DodajDoListyRysowania();
     }
 
     void scena::porusz(double kat, double szybkosc, double ruch)
     {
         uzywany->set_szybkosc()=szybkosc;
         uzywany->set_dlugosc()=ruch;
+        uzywany->set_kat()=kat;
         uzywany->jedz(Lacze);
-        for(int i=0; i<kat; i++)
-        {
-            uzywany->set_zadany()=kat;
-            usleep(5000);
-            Rysuj();
-        }
-        for(int i=kat; i<0; i++)
-        {
-            uzywany->set_zadany()=kat;  
-            usleep(5000);
-            Rysuj();
-        }
+        uzywany->obroc(Lacze);
     }
 
 
