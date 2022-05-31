@@ -5,7 +5,7 @@
 #include "lazik.hh"
 #include "scena.hh"
 #include "Kolory.hh"
-
+#include "Wektor.hh"
 
 using namespace std;
 
@@ -26,6 +26,7 @@ void wyswietlm()
     cout << "o - zmien orientacje" << endl;
     cout << "w - wybor lazika" << endl;
     cout << "m - wyswietl menu" << endl;
+    cout << "q - wyjdz" << endl;
 }
 
 int main()
@@ -33,16 +34,19 @@ int main()
   scena Scena;
 
   Scena.Rysuj();
-
+  Wek3D wektor;
   double kat;
   double szybkosc;
   double droga;
-  char wybor;
+  char wybor = ' ';
   int ktory;
 
   wyswietlm();
-  while (1)
+  while (wybor!='q')
   {
+    cout << endl;
+    wektor.zwrocinfo();
+    cout << endl;
     cout << "Aktywny lazik" << endl;
     cout << "Nazwa: " << Scena.nazwauzywanego() << endl;
     cout << "Polozenie (x,y,z): " << Scena.polozenieuzywanego() << endl;
@@ -71,8 +75,15 @@ int main()
       cin >> ktory;
       Scena.wybordrona(ktory);
       break;
-      default:
-    break;  
+    
+    case 'q':
+      cout << "Prgoram został zamkniety" << endl;
+      return 0;
+      break;      
+    
+    default:
+      break;  
+
     }
   }
 }

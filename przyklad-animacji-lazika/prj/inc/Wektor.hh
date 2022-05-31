@@ -15,6 +15,8 @@ class Wektor {
    *  Tutaj trzeba wstawic definicje odpowiednich pol i metod prywatnych
    */
   private:
+  static int wektory;
+  static int aktwektory;
   STyp Tab[SWymiar];
 
   public:
@@ -25,17 +27,72 @@ class Wektor {
   STyp &set_Tab(int x);
   STyp get_Tab(int x);
   */
- 
+  Wektor(const Wektor& wektor);
   STyp &operator [](int x);
   STyp operator [](int x) const;
 
   Wektor operator ^(Wektor const Skl);
-  Wektor operator +(Wektor Wart);  /*Wart w sensie wartość komórki*/
-  Wektor operator -(Wektor Wart);
-  Wektor operator *(STyp Wart);
-  Wektor operator /(STyp Wart);
-  STyp operator *(Wektor Wart);
+  Wektor operator +(Wektor const Wart);  /*Wart w sensie wartość komórki*/
+  Wektor operator -(Wektor const Wart);
+  Wektor operator *(STyp const Wart);
+  Wektor operator /(STyp const Wart);
+  STyp operator *(Wektor const 
+  art);
+  void zwrocinfo();
+  constexpr Wektor<STyp, SWymiar>& operator=(const Wektor<STyp, SWymiar>& wektor);
+  Wektor();
+  ~Wektor();
 };
+
+
+template <typename STyp, int SWymiar>
+
+constexpr Wektor<STyp, SWymiar>& Wektor<STyp, SWymiar>::operator=(const Wektor<STyp, SWymiar>& wektor)
+{
+  for(int i=0; i < SWymiar; i++)
+  Tab[i]=wektor.Tab[i];
+  return *this;
+}
+
+
+template <typename STyp, int SWymiar>
+
+void Wektor<STyp,SWymiar>::zwrocinfo()
+{
+    cout << "Wszystkie obiekty: " << wektory << endl;
+    cout << "Aktualne obiekty: " << aktwektory << endl;
+}
+
+
+
+template <typename STyp, int SWymiar>
+
+Wektor<STyp,SWymiar>::Wektor()
+{
+  for(int i = 0; i<SWymiar; i++)
+  Tab[i]=0;
+  wektory++;
+  aktwektory++;
+}
+
+
+
+template <typename STyp, int SWymiar>
+
+Wektor<STyp,SWymiar>::~Wektor()
+{
+aktwektory--;
+}
+
+
+template <typename STyp, int SWymiar>
+
+Wektor<STyp,SWymiar>::Wektor(const Wektor<STyp,SWymiar> &wektor)
+{
+  for(int i=0; i < SWymiar; i++)
+  Tab[i]=wektor.Tab[i];
+  aktwektory++;
+}
 
 
 /*
@@ -46,6 +103,13 @@ class Wektor {
  *    ~bk/edu/kpo/zalecenia.txt 
  */
 
+template <typename STyp, int SWymiar>
+
+int Wektor<STyp,SWymiar>::wektory=0;
+
+template <typename STyp, int SWymiar>
+
+int Wektor<STyp,SWymiar>::aktwektory=0;
 
 
 template <typename STyp, int SWymiar>

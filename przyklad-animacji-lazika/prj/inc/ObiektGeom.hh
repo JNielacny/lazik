@@ -65,9 +65,9 @@ class ObiektGeom: public UklWsp
     Mac3D &set_MacObrotu(){return MacObrotu;}
 
     Wek3D get_zmien_polozenie()const{return przesuniecia;}
-    Wek3D get_przesuniecia(){return przesuniecia;}
-    Wek3D get_skala(){return skala;}
-    Mac3D get_MacObrotu(){return MacObrotu;}
+    Wek3D get_przesuniecia()const{return przesuniecia;}
+    Wek3D get_skala()const{return skala;}
+    Mac3D get_MacObrotu()const{return MacObrotu;}
 };
 
 
