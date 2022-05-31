@@ -22,7 +22,7 @@ class scena
     public:
         scena();
         void Rysuj();
-        void porusz(double kat, double szybkosc, double ruch);
+        void porusz(double kat, double ruch, double szybkosc);
         void DodajDoListyRysowania();
         void wypisz();
         void wybordrona(int k);

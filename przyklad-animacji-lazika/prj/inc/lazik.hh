@@ -20,14 +20,15 @@ class Lazik: public ObiektGeom
                                    sNazwaObiektu, 
                                    KolorID)
                                    {wypadkowa=0;}
+
     void jedz(PzG::LaczeDoGNUPlota &Lacze)
     {
         
         Wek3D dane;
         dane[1]=szybkosc;
-        for(double i=0; i<dlugosc; i+=szybkosc)
+        for(double i=0; i<dlugosc; i = i + szybkosc)
         {
-            set_zmien_polozenie()=get_zmien_polozenie()+(RotacjaZ(wypadkowa) * dane);
+            set_zmien_polozenie()=get_przesuniecia()+(RotacjaZ(wypadkowa) * dane);
             Przelicz_i_Zapisz_Wierzcholki();
             Lacze.Rysuj();
             usleep(10000);

@@ -10,7 +10,6 @@ using namespace std;
         Lacze.UstawZakresY(-ROMIAR_POWIERZCHNI_Y/2, ROMIAR_POWIERZCHNI_Y/2);
         Lacze.UstawZakresZ(-0, 90);  
         Lacze.UstawRotacjeXZ(40,60); // Tutaj ustawiany jest widok
-
         Lacze.Inicjalizuj();  // Tutaj startuje gnuplot.
     }
 
@@ -20,7 +19,6 @@ using namespace std;
     {
         Wek3D przesun;
         przesun[0]=50;
-        Inicjalizuj_Lacze();
         Inicjalizuj_PowierzchnieMarsa(Lacze);
 
         shared_ptr<Lazik>  Ob1;
@@ -40,9 +38,12 @@ using namespace std;
     
         uzywany = Ob1;
         DodajDoListyRysowania();
+        Inicjalizuj_Lacze();
+        Rysuj();
+        Lacze.Rysuj();
     }
 
-    void scena::porusz(double kat, double szybkosc, double ruch)
+    void scena::porusz(double kat, double ruch, double szybkosc)
     {
         uzywany->set_szybkosc()=szybkosc;
         uzywany->set_dlugosc()=ruch;
