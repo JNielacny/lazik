@@ -70,7 +70,7 @@ template <typename STyp, int SWymiar>
 Wektor<STyp,SWymiar>::Wektor()
 {
   for(int i = 0; i<SWymiar; i++)
-  Tab[i]=0;
+    Tab[i]=0;
   wektory++;
   aktwektory++;
 }
@@ -90,7 +90,7 @@ template <typename STyp, int SWymiar>
 Wektor<STyp,SWymiar>::Wektor(const Wektor<STyp,SWymiar> &wektor)
 {
   for(int i=0; i < SWymiar; i++)
-  Tab[i]=wektor.Tab[i];
+    Tab[i]=wektor.Tab[i];
   aktwektory++;
 }
 
@@ -107,9 +107,12 @@ template <typename STyp, int SWymiar>
 
 int Wektor<STyp,SWymiar>::wektory=0;
 
+
+
 template <typename STyp, int SWymiar>
 
 int Wektor<STyp,SWymiar>::aktwektory=0;
+
 
 
 template <typename STyp, int SWymiar>

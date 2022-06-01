@@ -27,6 +27,7 @@ class Macierz {
   Wektor<STyp,SWymiar> &operator [](int x);
   Wektor<STyp,SWymiar> operator [](int x) const;
   Wektor<STyp,SWymiar> operator*(Wektor<STyp,SWymiar> Wart);    
+
   void Zamien(Wektor<STyp,SWymiar> wekt, int x);
   void Gauss();
 };

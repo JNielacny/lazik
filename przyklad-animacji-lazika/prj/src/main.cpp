@@ -31,26 +31,29 @@ void wyswietlm()
 
 int main()
 {
-  scena Scena;
-
-  Scena.Rysuj();
-  Wek3D wektor;
-  double kat;
+  int ktory;
+  double kat;  
   double szybkosc;
   double droga;
   char wybor = ' ';
-  int ktory;
+  Wek3D wektor;
+  srand(time(0));
 
+  scena Scena;
+  Scena.Rysuj();  
   wyswietlm();
+
   while (wybor!='q')
   {
     cout << endl;
     wektor.zwrocinfo();
     cout << endl;
+
     cout << "Aktywny lazik" << endl;
     cout << "Nazwa: " << Scena.nazwauzywanego() << endl;
     cout << "Polozenie (x,y,z): " << Scena.polozenieuzywanego() << endl;
     cin >> wybor;
+    
     switch (wybor)
     {
     case 'm':
@@ -59,9 +62,9 @@ int main()
 
     case 'j':
       cout << "podaj droge" << endl;
+      cin >> droga;      
       cin >> szybkosc;
-      cin >> droga;
-      Scena.porusz(0,szybkosc,droga);
+      Scena.porusz(0,droga,szybkosc);
     break;
 
     case 'o':

@@ -17,26 +17,54 @@ using namespace std;
     
     scena::scena()
     {
+        Wek3D skala;
+            skala[0]=20;
+            skala[1]=20;
+            skala[2]=10;
+        
         Wek3D przesun;
-        przesun[0]=50;
+        przesun[0]=40;
         Inicjalizuj_PowierzchnieMarsa(Lacze);
+        string regol[]={"1","2","3","4","5","6","7","8","9","10"};
+
 
         shared_ptr<Lazik>  Ob1;
             Ob1 = make_shared<Lazik>("bryly_wzorcowe/szescian3.dat","FSR",Kolor_JasnoNiebieski);
                 Ob1->set_przesuniecia()=przesun;
-                    ListaObiektow.push_back(Ob1);
+                    Ob1->set_skala()=skala;
+                        ListaObiektow.push_back(Ob1);
 
         shared_ptr<Lazik>  Ob2;
             Ob2 = make_shared<Lazik>("bryly_wzorcowe/szescian3.dat","Perseverance",Kolor_Czerwony);
-                przesun[0]=-50;
+                przesun[0]=-40;
                     Ob2->set_przesuniecia()=przesun;
-                        ListaObiektow.push_back(Ob2);
+                        Ob2->set_skala()=skala;
+                            ListaObiektow.push_back(Ob2);
      
         shared_ptr<Lazik>  Ob3;
             Ob3 = make_shared<Lazik>("bryly_wzorcowe/szescian3.dat","Curiosity",Kolor_Czerwony);  
-                ListaObiektow.push_back(Ob3);
+                Ob3->set_skala()=skala;
+                    ListaObiektow.push_back(Ob3);
     
         uzywany = Ob1;
+
+        for(int i=0; i<10; i++)
+        {
+            przesun[0]=rand()%180-90;
+                przesun[1]=rand()%180-90;
+            
+            skala[0]=4;
+                skala[1]=4;
+                    skala[2]=4;
+
+            shared_ptr<PrbRegol> Prb;
+                Prb = make_shared<PrbRegol>("bryly_wzorcowe/szescian3.dat",regol[i].c_str(),Kolor_JasnoNiebieski);
+                    Prb->set_przesuniecia()=przesun;
+                        Prb->set_skala()=skala;
+                            ListaObiektow.push_back(Prb);
+                
+        }
+
         DodajDoListyRysowania();
         Inicjalizuj_Lacze();
         Rysuj();
@@ -48,6 +76,7 @@ using namespace std;
         uzywany->set_szybkosc()=szybkosc;
         uzywany->set_dlugosc()=ruch;
         uzywany->set_kat()=kat;
+
         uzywany->jedz(Lacze);
         uzywany->obroc(Lacze);
     }
@@ -56,14 +85,8 @@ using namespace std;
 
     void scena::Rysuj()
     {
-        Wek3D wektor;
-            wektor[0]=20;
-            wektor[1]=20;
-            wektor[2]=10;
-        
-        for(list<shared_ptr<Lazik>>::iterator iter=ListaObiektow.begin(); iter!=ListaObiektow.end(); iter++)
+        for(list<shared_ptr<ObiektGeom>>::iterator iter=ListaObiektow.begin(); iter!=ListaObiektow.end(); iter++)
         {
-            (*iter)->set_skala() = wektor;
             (*iter)->Przelicz_i_Zapisz_Wierzcholki();
         }
 
@@ -75,7 +98,7 @@ using namespace std;
     void scena::DodajDoListyRysowania()
     {
         PzG::InfoPlikuDoRysowania *wInfoPliku;        
-        for(list<shared_ptr<Lazik>>::iterator i=ListaObiektow.begin(); i!=ListaObiektow.end(); i++)
+        for(list<shared_ptr<ObiektGeom>>::iterator i=ListaObiektow.begin(); i!=ListaObiektow.end(); i++)
         {
             wInfoPliku = &Lacze.DodajNazwePliku((*i)->WezNazwePliku_BrylaRysowana());
             wInfoPliku->ZmienKolor((*i)->WezKolorID());
@@ -84,17 +107,17 @@ using namespace std;
 
     void scena::wybordrona(int p)
     {
-        list<shared_ptr<Lazik>>::iterator i = ListaObiektow.begin();
+        list<shared_ptr<ObiektGeom>>::iterator i = ListaObiektow.begin();
         for(int k=0;k<p;k++,i++)
         {
-            uzywany=(*i);
+            /*uzywany=(*i);*/
         }
     }
 
     void scena::wypisz()
     {
         int k=0;
-        for (list<shared_ptr<Lazik>>::iterator i = ListaObiektow.begin();i!=ListaObiektow.end(); i++)
+        for (list<shared_ptr<ObiektGeom>>::iterator i = ListaObiektow.begin();i!=ListaObiektow.end(); i++)
         {
             k++;
             cout <<k<<":"<< (*i)->WezNazweObiektu() << endl;

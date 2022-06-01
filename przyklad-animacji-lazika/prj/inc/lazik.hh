@@ -21,11 +21,17 @@ class Lazik: public ObiektGeom
                                    KolorID)
                                    {wypadkowa=0;}
 
+    Tkolizji CzyKolizja(shared_ptr<Lazik> &laz)
+    {
+        return TK_BrakKolizji;
+    }
+
     void jedz(PzG::LaczeDoGNUPlota &Lacze)
     {
         
         Wek3D dane;
         dane[1]=szybkosc;
+        
         for(double i=0; i<dlugosc; i = i + szybkosc)
         {
             set_zmien_polozenie()=get_przesuniecia()+(RotacjaZ(wypadkowa) * dane);

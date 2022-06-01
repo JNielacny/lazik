@@ -4,12 +4,14 @@
 #include <string>
 #include "Wektor.hh"
 #include "Macierz.hh"
+#include "kolizje.hh"
+#include <memory>
 
 
 #define NAZWA_KARTOTEKI_PLIKOW_DO_RYSOWANIA    "pliki_do_rysowania"
 
 using namespace std;
-
+class Lazik;
 class UklWsp
 {
     protected:
@@ -68,6 +70,8 @@ class ObiektGeom: public UklWsp
     Wek3D get_przesuniecia()const{return przesuniecia;}
     Wek3D get_skala()const{return skala;}
     Mac3D get_MacObrotu()const{return MacObrotu;}
+
+    virtual Tkolizji CzyKolizja(shared_ptr<Lazik> &laz){};
 };
 
 
