@@ -74,9 +74,9 @@ int main()
     break;
     
     case 'w':
-      Scena.wypisz();
+      Scena.wypiszlaziki();
       cin >> ktory;
-      Scena.wybordrona(ktory);
+      Scena.wyborlazika(ktory);
       break;
     
     case 'q':

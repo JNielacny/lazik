@@ -41,7 +41,6 @@ class Macierz {
  *    ~bk/edu/kpo/zalecenia.txt 
  */
 template <typename STyp, int SWymiar>
-
 std::istream& operator >> (std::istream &Strm, Macierz<STyp, SWymiar> &Matrix);
 
 /*
@@ -52,7 +51,6 @@ std::istream& operator >> (std::istream &Strm, Macierz<STyp, SWymiar> &Matrix);
  *    ~bk/edu/kpo/zalecenia.txt 
  */
 template <typename STyp, int SWymiar>
-
 std::ostream& operator << (std::ostream &Strm, const Macierz<STyp, SWymiar> &Matrix);
 
   template <typename STyp, int SWymiar>

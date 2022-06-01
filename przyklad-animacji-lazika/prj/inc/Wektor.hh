@@ -238,5 +238,6 @@ Wektor<STyp,SWymiar>  Wektor<STyp, SWymiar> ::operator ^(Wektor const Skl)
 
 typedef Wektor<double,3> Wek3D;
 
+typedef Wektor<double,2> Wek2D;
 
 #endif

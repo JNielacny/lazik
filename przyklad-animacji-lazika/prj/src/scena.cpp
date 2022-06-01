@@ -26,8 +26,9 @@ using namespace std;
         przesun[0]=40;
         Inicjalizuj_PowierzchnieMarsa(Lacze);
         string regol[]={"1","2","3","4","5","6","7","8","9","10"};
-
-
+        string nazwa[]={"FSR","Perseverance","Curiosity"};
+        int kolor[]={Kolor_Czerwony,Kolor_Czerwony,Kolor_JasnoNiebieski};
+/*
         shared_ptr<Lazik>  Ob1;
             Ob1 = make_shared<Lazik>("bryly_wzorcowe/szescian3.dat","FSR",Kolor_JasnoNiebieski);
                 Ob1->set_przesuniecia()=przesun;
@@ -45,10 +46,23 @@ using namespace std;
             Ob3 = make_shared<Lazik>("bryly_wzorcowe/szescian3.dat","Curiosity",Kolor_Czerwony);  
                 Ob3->set_skala()=skala;
                     ListaObiektow.push_back(Ob3);
-    
-        uzywany = Ob1;
+    */
 
-        for(int i=0; i<10; i++)
+
+        shared_ptr<Lazik> Ob;
+        for(int iter=0; iter<3; iter++)
+        {
+        przesun[0]=-40 + (40*iter);
+            Ob = make_shared<Lazik>("bryly_wzorcowe/szescian3.dat",nazwa[iter].c_str(),kolor[iter]);
+                Ob->set_przesuniecia()=przesun;
+                    Ob->set_skala()=skala;
+                        ListaObiektow.push_back(Ob);       
+                            ListaLazikow.push_back(Ob);     
+        }
+
+        uzywany = Ob;
+
+        for(int iter=0; iter<10; iter++)
         {
             przesun[0]=rand()%180-90;
                 przesun[1]=rand()%180-90;
@@ -58,7 +72,7 @@ using namespace std;
                     skala[2]=4;
 
             shared_ptr<PrbRegol> Prb;
-                Prb = make_shared<PrbRegol>("bryly_wzorcowe/szescian3.dat",regol[i].c_str(),Kolor_JasnoNiebieski);
+                Prb = make_shared<PrbRegol>("bryly_wzorcowe/szescian3.dat",regol[iter].c_str(),Kolor_JasnoNiebieski);
                     Prb->set_przesuniecia()=przesun;
                         Prb->set_skala()=skala;
                             ListaObiektow.push_back(Prb);
@@ -96,30 +110,41 @@ using namespace std;
     }
 
     void scena::DodajDoListyRysowania()
-    {
+    {                                                                                                                                                                                                                                                                                                                                                                                   
         PzG::InfoPlikuDoRysowania *wInfoPliku;        
-        for(list<shared_ptr<ObiektGeom>>::iterator i=ListaObiektow.begin(); i!=ListaObiektow.end(); i++)
+        for(list<shared_ptr<ObiektGeom>>::iterator iter=ListaObiektow.begin(); iter!=ListaObiektow.end(); iter++)
         {
-            wInfoPliku = &Lacze.DodajNazwePliku((*i)->WezNazwePliku_BrylaRysowana());
-            wInfoPliku->ZmienKolor((*i)->WezKolorID());
+            wInfoPliku = &Lacze.DodajNazwePliku((*iter)->WezNazwePliku_BrylaRysowana());
+            wInfoPliku->ZmienKolor((*iter)->WezKolorID());
         }
     }
 
-    void scena::wybordrona(int p)
+    void scena::wyborlazika(int wyb)
     {
-        list<shared_ptr<ObiektGeom>>::iterator i = ListaObiektow.begin();
-        for(int k=0;k<p;k++,i++)
-        {
-            /*uzywany=(*i);*/
+        list<shared_ptr<ObiektGeom>>::iterator iter = ListaLazikow.begin();
+
+        for(int laziory=0;laziory<wyb;laziory++,iter++)
+        {   
+            uzywany=dynamic_pointer_cast<Lazik> (*iter);
         }
     }
 
     void scena::wypisz()
     {
-        int k=0;
-        for (list<shared_ptr<ObiektGeom>>::iterator i = ListaObiektow.begin();i!=ListaObiektow.end(); i++)
+        int wyb=0;
+        for (list<shared_ptr<ObiektGeom>>::iterator iter = ListaObiektow.begin();iter!=ListaObiektow.end()    ; iter++)
         {
-            k++;
-            cout <<k<<":"<< (*i)->WezNazweObiektu() << endl;
+            wyb++;
+            cout <<wyb<<":"<< (*iter)->WezNazweObiektu() << endl;
+        }
+    }
+
+    void scena::wypiszlaziki()
+    {
+        int ten=0;
+        for (list<shared_ptr<ObiektGeom>>::iterator iter = ListaLazikow.begin();iter!=ListaLazikow.end()    ; iter++)
+        {
+            ten++;
+            cout <<ten<<":"<< (*iter)->WezNazweObiektu() << endl;
         }
     }

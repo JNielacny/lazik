@@ -19,7 +19,6 @@ class UklWsp
     Wek3D skala;
 
     public:
-
     Wek3D &set_wsp(){return wsp;}
     Wek3D &set_skala(){return skala;}
         
@@ -37,7 +36,6 @@ class ObiektGeom: public UklWsp
     int           _KolorID;
     Wek3D przesuniecia;
     Mac3D MacObrotu; 
-
     double zadany;
     
     public:
@@ -45,22 +43,7 @@ class ObiektGeom: public UklWsp
             for(int k=0; k<3; k++)
             MacObrotu[k][k]=1;
     };
-    
-    ObiektGeom(const char* sNazwaPliku_BrylaWzorcowa, const char* sNazwaObiektu, int KolorID);
 
-    int WezKolorID() const { return _KolorID; }
-    double &set_zadany(){return zadany;}
-    const string & WezNazweObiektu() const { return _NazwaObiektu; }
-    const string & WezNazwePliku_BrylaRysowana() const { return _NazwaPliku_BrylaRysowana; }
-
-    bool Przelicz_i_Zapisz_Wierzcholki(
-                  ostream &StrmWy, 
-                  istream &StrmWe
-                  );
-    bool Przelicz_i_Zapisz_Wierzcholki();
-
-
-    
     Wek3D &set_zmien_polozenie(){return przesuniecia;}
     Wek3D &set_skala(){return skala;}
     Wek3D &set_przesuniecia(){return przesuniecia;}
@@ -70,6 +53,20 @@ class ObiektGeom: public UklWsp
     Wek3D get_przesuniecia()const{return przesuniecia;}
     Wek3D get_skala()const{return skala;}
     Mac3D get_MacObrotu()const{return MacObrotu;}
+
+    ObiektGeom(const char* sNazwaPliku_BrylaWzorcowa, const char* sNazwaObiektu, int KolorID);
+
+    int WezKolorID() const { return _KolorID; }
+    double &set_zadany(){return zadany;}
+    
+    const string & WezNazweObiektu() const { return _NazwaObiektu; }
+    const string & WezNazwePliku_BrylaRysowana() const { return _NazwaPliku_BrylaRysowana; }
+
+    bool Przelicz_i_Zapisz_Wierzcholki(
+                  ostream &StrmWy, 
+                  istream &StrmWe
+                  );
+    bool Przelicz_i_Zapisz_Wierzcholki();
 
     virtual Tkolizji CzyKolizja(shared_ptr<Lazik> &laz){};
 };

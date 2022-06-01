@@ -23,6 +23,7 @@ class Lazik: public ObiektGeom
 
     Tkolizji CzyKolizja(shared_ptr<Lazik> &laz)
     {
+        laz;
         return TK_BrakKolizji;
     }
 
