@@ -19,16 +19,19 @@ using namespace std;
     {
         Wek3D skala;
             skala[0]=20;
-            skala[1]=20;
-            skala[2]=10;
+                skala[1]=20;
+                    skala[2]=10;
         
         Wek3D przesun;
         przesun[0]=40;
+        
         Inicjalizuj_PowierzchnieMarsa(Lacze);
+        
         string regol[]={"1","2","3","4","5","6","7","8","9","10"};
         string nazwa[]={"FSR","Perseverance","Curiosity"};
         int kolor[]={Kolor_Czerwony,Kolor_Czerwony,Kolor_JasnoNiebieski};
-/*
+
+    /*
         shared_ptr<Lazik>  Ob1;
             Ob1 = make_shared<Lazik>("bryly_wzorcowe/szescian3.dat","FSR",Kolor_JasnoNiebieski);
                 Ob1->set_przesuniecia()=przesun;
@@ -81,6 +84,7 @@ using namespace std;
 
         DodajDoListyRysowania();
         Inicjalizuj_Lacze();
+
         Rysuj();
         Lacze.Rysuj();
     }
@@ -88,11 +92,11 @@ using namespace std;
     void scena::porusz(double kat, double ruch, double szybkosc)
     {
         uzywany->set_szybkosc()=szybkosc;
-        uzywany->set_dlugosc()=ruch;
-        uzywany->set_kat()=kat;
+            uzywany->set_dlugosc()=ruch;
+                uzywany->set_kat()=kat;
 
         uzywany->jedz(Lacze);
-        uzywany->obroc(Lacze);
+            uzywany->obroc(Lacze);
     }
 
 

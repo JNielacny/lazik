@@ -25,9 +25,9 @@ class scena
 
     public:
         scena();
-
-        void Rysuj();
+    
         void porusz(double kat, double ruch, double szybkosc);
+        void Rysuj();
         void DodajDoListyRysowania();
         void wypisz();
         void wyborlazika(int wyb);

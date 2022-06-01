@@ -12,6 +12,7 @@ class Lazik: public ObiektGeom
     double dlugosc;
     double kat;
     double wypadkowa;
+
     public:
     Lazik(){wypadkowa=0;}
     Lazik(const char *sNazwaPliku_BrylaWzorcowa, 
@@ -49,6 +50,7 @@ class Lazik: public ObiektGeom
             obrot();
             Przelicz_i_Zapisz_Wierzcholki();
             Lacze.Rysuj();
+
             usleep(5000);
         }
         for(int i=kat; i<0; i+=1)
@@ -56,6 +58,7 @@ class Lazik: public ObiektGeom
             obrot_alt();
             Przelicz_i_Zapisz_Wierzcholki();
             Lacze.Rysuj();
+
             usleep(5000);
         }
     }
@@ -63,15 +66,15 @@ class Lazik: public ObiektGeom
     void obrot()
     {
         wypadkowa+=1;
-        set_MacObrotu()=RotacjaZ(wypadkowa);
-        if(wypadkowa==360){wypadkowa=0;}
+            set_MacObrotu()=RotacjaZ(wypadkowa);
+                if(wypadkowa==360){wypadkowa=0;}
     }
 
     void obrot_alt()
     {
         wypadkowa-=1;
-        set_MacObrotu()=RotacjaZ(wypadkowa);
-        if(wypadkowa==-360){wypadkowa=0;}
+            set_MacObrotu()=RotacjaZ(wypadkowa);
+                if(wypadkowa==-360){wypadkowa=0;}
     }
 
     double get_szybkosc()const{return szybkosc;}
