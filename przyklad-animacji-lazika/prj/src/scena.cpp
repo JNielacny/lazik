@@ -27,9 +27,10 @@ using namespace std;
         
         Inicjalizuj_PowierzchnieMarsa(Lacze);
         
-        string regol[]={"1","2","3","4","5","6","7","8","9","10"};
-        string nazwa[]={"FSR","Perseverance","Curiosity"};
-        int kolor[]={Kolor_Czerwony,Kolor_Czerwony,Kolor_JasnoNiebieski};
+        string regol[]={"Coulettes","Salette","Dourbes","Robine","Quartier","Bellegarde","Montdenier","Montagnac","Guillaumes","Roubion"};
+        string nazwa[]={"FSR","Perseverance","Curiosity","Pelra","Kustosz","Lech"};
+        
+        int kolor[]={Kolor_Czerwony,Kolor_Zielony,Kolor_JasnoNiebieski,Kolor_Czarny,Kolor_Zolty,Kolor_Fioletowy};
 
     /*
         shared_ptr<Lazik>  Ob1;
@@ -53,9 +54,9 @@ using namespace std;
 
 
         shared_ptr<Lazik> Ob;
-        for(int iter=0; iter<3; iter++)
+        for(int iter=0; iter<6; iter++)
         {
-        przesun[0]=-40 + (40*iter);
+        przesun[0]=-120 + (40*iter);
             Ob = make_shared<Lazik>("bryly_wzorcowe/szescian3.dat",nazwa[iter].c_str(),kolor[iter]);
                 Ob->set_przesuniecia()=przesun;
                     Ob->set_skala()=skala;

@@ -37,8 +37,9 @@ class Lazik: public ObiektGeom
         for(double i=0; i<dlugosc; i = i + szybkosc)
         {
             set_zmien_polozenie()=get_przesuniecia()+(RotacjaZ(wypadkowa) * dane);
-            Przelicz_i_Zapisz_Wierzcholki();
-            Lacze.Rysuj();
+                Przelicz_i_Zapisz_Wierzcholki();
+                    Lacze.Rysuj();
+
             usleep(10000);
         }
     }
@@ -48,16 +49,16 @@ class Lazik: public ObiektGeom
         for(int i=0; i<kat; i+=1)
         {
             obrot();
-            Przelicz_i_Zapisz_Wierzcholki();
-            Lacze.Rysuj();
+                Przelicz_i_Zapisz_Wierzcholki();
+                    Lacze.Rysuj();
 
             usleep(5000);
         }
         for(int i=kat; i<0; i+=1)
         {
             obrot_alt();
-            Przelicz_i_Zapisz_Wierzcholki();
-            Lacze.Rysuj();
+                Przelicz_i_Zapisz_Wierzcholki();
+                    Lacze.Rysuj();
 
             usleep(5000);
         }
@@ -76,6 +77,15 @@ class Lazik: public ObiektGeom
             set_MacObrotu()=RotacjaZ(wypadkowa);
                 if(wypadkowa==-360){wypadkowa=0;}
     }
+
+    /*
+    void kolko()
+    {
+        for(int i=0;i==36;i++)
+        {
+            
+        }
+    }*/
 
     double get_szybkosc()const{return szybkosc;}
     double get_dlugosc()const{return dlugosc;}

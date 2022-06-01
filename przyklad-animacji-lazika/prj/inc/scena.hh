@@ -17,6 +17,7 @@ class scena
     private:
         PzG::LaczeDoGNUPlota Lacze;
         shared_ptr<Lazik> uzywany;
+
         list<shared_ptr<ObiektGeom>> ListaObiektow;
         list<shared_ptr<ObiektGeom>> ListaLazikow;
 
@@ -27,11 +28,15 @@ class scena
         scena();
     
         void porusz(double kat, double ruch, double szybkosc);
+        void wyborlazika(int wyb);
+
         void Rysuj();
         void DodajDoListyRysowania();
+        
         void wypisz();
-        void wyborlazika(int wyb);
         void wypiszlaziki();
+
+
 
         string nazwauzywanego(){return uzywany->WezNazweObiektu();}
         Wek3D polozenieuzywanego(){return uzywany->get_przesuniecia();}

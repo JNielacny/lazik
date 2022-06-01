@@ -22,11 +22,16 @@ using namespace std;
  */
 void wyswietlm()
 {
+    cout << "--------------------------------------------------------------" << endl;
     cout << "j - jazda na wprost" << endl;
     cout << "o - zmien orientacje" << endl;
     cout << "w - wybor lazika" << endl;
     cout << "m - wyswietl menu" << endl;
+    cout << "p - wyswietl liste wszystkich obiektow" << endl;
+    cout << "l - wyswietl liste wszystkich lazikow" << endl;
     cout << "q - wyjdz" << endl;
+    cout << "--------------------------------------------------------------" << endl;
+
 }
 
 int main()
@@ -78,7 +83,19 @@ int main()
       cin >> ktory;
       Scena.wyborlazika(ktory);
       break;
-    
+
+    case 'p':
+      cout << "--------------------------------------------------------------" << endl;
+      Scena.wypisz();
+      cout << "--------------------------------------------------------------" << endl;
+      break;
+
+    case 'l':
+      cout << "--------------------------------------------------------------" << endl;
+      Scena.wypiszlaziki();
+      cout << "--------------------------------------------------------------" << endl;
+      break;
+
     case 'q':
       cout << "Prgoram został zamkniety" << endl;
       return 0;

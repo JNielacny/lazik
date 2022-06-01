@@ -28,6 +28,7 @@ class Wektor {
   STyp get_Tab(int x);
   */
   Wektor(const Wektor& wektor);
+  
   STyp &operator [](int x);
   STyp operator [](int x) const;
 
@@ -36,8 +37,8 @@ class Wektor {
   Wektor operator -(Wektor const Wart);
   Wektor operator *(STyp const Wart);
   Wektor operator /(STyp const Wart);
-  STyp operator *(Wektor const 
-  art);
+  STyp operator *(Wektor const Wart);
+  
   void zwrocinfo();
   constexpr Wektor<STyp, SWymiar>& operator=(const Wektor<STyp, SWymiar>& wektor);
   Wektor();
@@ -51,6 +52,7 @@ constexpr Wektor<STyp, SWymiar>& Wektor<STyp, SWymiar>::operator=(const Wektor<S
 {
   for(int i=0; i < SWymiar; i++)
   Tab[i]=wektor.Tab[i];
+  
   return *this;
 }
 
@@ -60,7 +62,7 @@ template <typename STyp, int SWymiar>
 void Wektor<STyp,SWymiar>::zwrocinfo()
 {
     cout << "Wszystkie obiekty: " << wektory << endl;
-    cout << "Aktualne obiekty: " << aktwektory << endl;
+      cout << "Aktualne obiekty: " << aktwektory << endl;
 }
 
 
