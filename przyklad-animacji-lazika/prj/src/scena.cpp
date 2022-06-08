@@ -23,8 +23,7 @@ using namespace std;
                     skala[2]=10;
         
         Wek3D przesun;
-        przesun[0]=40;
-        
+        przesun[0]=40;        
         Inicjalizuj_PowierzchnieMarsa(Lacze);
         
         string regol[]={"Coulettes","Salette","Dourbes","Robine","Quartier","Bellegarde","Montdenier","Montagnac","Guillaumes","Roubion"};
@@ -89,7 +88,7 @@ using namespace std;
         Rysuj();
         Lacze.Rysuj();
     }
-
+    
     void scena::porusz(double kat, double ruch, double szybkosc)
     {
         uzywany->set_szybkosc()=szybkosc;

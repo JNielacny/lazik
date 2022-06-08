@@ -72,6 +72,27 @@ int main()
       Scena.porusz(0,droga,szybkosc);
     break;
 
+    /*
+    case 'k':
+    for(int i=0;i<180;i+=5)
+    {
+      Scena.porusz(5,0,0);
+      Scena.porusz(0,5,5);
+    };
+    for(int i=0;i<360;i+=5)
+    {
+      Scena.porusz(-5,0,0);
+      Scena.porusz(0,5,5);
+    };
+    for(int i=0;i<180;i+=5)
+    {
+      Scena.porusz(5,0,0);
+      Scena.porusz(0,5,5);
+    };
+    */
+
+    break;
+
     case 'o':
       cout << "podaj kat" << endl;
       cin >> kat;
