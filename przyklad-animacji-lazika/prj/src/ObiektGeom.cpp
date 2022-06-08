@@ -1,6 +1,9 @@
 #include <iostream>
 #include <fstream>
+#include <vector>
 #include "ObiektGeom.hh"
+#include "obrys.hh"
+
 
 using namespace std;
 
@@ -53,6 +56,9 @@ bool ObiektGeom::Przelicz_i_Zapisz_Wierzcholki()
   ifstream  StrmWe(_NazwaPliku_BrylaWzorcowa);
   ofstream  StrmWy(_NazwaPliku_BrylaRysowana);
 
+  vector<double> wspx;
+  vector<double> wspy;
+
   if (!(StrmWe.is_open() && StrmWy.is_open())) {
     cerr << endl << "Nie mozna otworzyc jednego z plikow:" << endl
 	 << "    " << _NazwaPliku_BrylaWzorcowa << endl
@@ -67,6 +73,9 @@ bool ObiektGeom::Przelicz_i_Zapisz_Wierzcholki()
 
   if (StrmWe.fail())return false;
   do {
+    wspx.push_back(get_wsp()[0]);
+    wspy.push_back(get_wsp()[1]);
+
     set_wsp()=MacObrotu*get_wsp();
     set_wsp() = (get_wsp()^get_skala()) + przesuniecia;
     StrmWy << get_wsp() << endl;
@@ -80,6 +89,8 @@ bool ObiektGeom::Przelicz_i_Zapisz_Wierzcholki()
     StrmWe >> set_wsp();
     
   } while (!StrmWe.fail());
+  /*  set_W_dolny_lewy()[0]=*min_element(wspx.begin(), wspx.end());
+      set_W_gorny_prawy()[0]=*min_element(wspy.begin(), wspy.end()); */
 
   if (!StrmWe.eof()) return false;
   zadany =0;  

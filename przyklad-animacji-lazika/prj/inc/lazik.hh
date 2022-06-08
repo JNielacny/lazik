@@ -14,7 +14,7 @@ class Lazik: public ObiektGeom
     double wypadkowa;
 
     public:
-    Lazik(){wypadkowa=0;}
+    /*Lazik(){wypadkowa=0;}*/
     Lazik(const char *sNazwaPliku_BrylaWzorcowa, 
           const char *sNazwaObiektu, 
           int KolorID): ObiektGeom(sNazwaPliku_BrylaWzorcowa, 
