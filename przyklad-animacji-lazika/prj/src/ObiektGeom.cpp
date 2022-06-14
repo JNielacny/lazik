@@ -89,8 +89,10 @@ bool ObiektGeom::Przelicz_i_Zapisz_Wierzcholki()
     StrmWe >> set_wsp();
     
   } while (!StrmWe.fail());
-  /*  set_W_dolny_lewy()[0]=*min_element(wspx.begin(), wspx.end());
-      set_W_gorny_prawy()[0]=*min_element(wspy.begin(), wspy.end()); */
+    Obrys.set_W_dolny_lewy()[0]=*min(wspx.begin(), wspx.end());
+    Obrys.set_W_dolny_lewy()[1]=*min(wspy.begin(), wspy.end());
+    Obrys.set_W_gorny_prawy()[0]=*max(wspx.begin(), wspx.end());
+    Obrys.set_W_gorny_prawy()[1]=*max(wspx.begin(), wspx.end());
 
   if (!StrmWe.eof()) return false;
   zadany =0;  

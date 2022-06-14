@@ -5,6 +5,7 @@
 #include "Wektor.hh"
 #include "Macierz.hh"
 #include "kolizje.hh"
+#include "obrys.hh"
 #include <memory>
 
 
@@ -36,6 +37,7 @@ class ObiektGeom: public UklWsp
     int           _KolorID;
     Wek3D przesuniecia;
     Mac3D MacObrotu; 
+    obrys Obrys;
     double zadany;
     
     public:
