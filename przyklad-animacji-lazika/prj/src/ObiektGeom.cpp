@@ -2,7 +2,6 @@
 #include <fstream>
 #include <vector>
 #include "ObiektGeom.hh"
-#include "obrys.hh"
 
 
 using namespace std;
@@ -51,6 +50,22 @@ bool ObiektGeom::Przelicz_i_Zapisz_Wierzcholki(ostream &StrmWy, istream &StrmWe)
   return Indeks_Wiersza == 0 && !StrmWy.fail();
 }
 
+bool ObiektGeom::zczytaj(obrys przeszkoda)
+{
+  Wek2D l_lewa = Obrys.get_W_dolny_lewy();
+  Wek2D p_lewa = Obrys.get_W_dolny_lewy();
+  Wek2D l_prawa = przeszkoda.get_W_dolny_lewy();
+  Wek2D p_prawa = przeszkoda.get_W_dolny_lewy();
+
+  if((l_lewa[0]>p_lewa[0] && l_lewa[0]<p_prawa[0] && l_lewa[1]>p_lewa[1] && l_lewa[1]<p_prawa[1]) || (l_prawa[0]>p_lewa[0] && l_prawa[0]<p_prawa[0] && l_prawa[1]>p_lewa[1] && l_prawa[1]<p_prawa[1]) || (l_lewa[0]>p_lewa[0] && l_lewa[0]<p_prawa[0] && l_prawa[1]>p_lewa[1] && l_prawa[1]<p_prawa[1]) || (l_prawa[0]>p_lewa[0] && l_prawa[0]<p_prawa[0] && l_lewa[1]>p_lewa[1] && l_lewa[1]<p_prawa[1]))
+  {
+    return true;
+  }
+  else
+  return false;
+}
+
+
 bool ObiektGeom::Przelicz_i_Zapisz_Wierzcholki()
 {
   ifstream  StrmWe(_NazwaPliku_BrylaWzorcowa);
@@ -92,7 +107,7 @@ bool ObiektGeom::Przelicz_i_Zapisz_Wierzcholki()
     Obrys.set_W_dolny_lewy()[0]=*min(wspx.begin(), wspx.end());
     Obrys.set_W_dolny_lewy()[1]=*min(wspy.begin(), wspy.end());
     Obrys.set_W_gorny_prawy()[0]=*max(wspx.begin(), wspx.end());
-    Obrys.set_W_gorny_prawy()[1]=*max(wspx.begin(), wspx.end());
+    Obrys.set_W_gorny_prawy()[1]=*max(wspy.begin(), wspy.end());
 
   if (!StrmWe.eof()) return false;
   zadany =0;  

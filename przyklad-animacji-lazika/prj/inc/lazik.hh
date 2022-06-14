@@ -22,9 +22,12 @@ class Lazik: public ObiektGeom
                                    KolorID)
                                    {wypadkowa=0;}
 
-    Tkolizji CzyKolizja(shared_ptr<Lazik> &laz)
+    Tkolizji SprawdzKolizje(shared_ptr<Lazik> &lazik)
     {
-        laz;
+        if(Obrys.get_W_dolny_lewy()[0]<)
+
+
+
         return TK_BrakKolizji;
     }
 

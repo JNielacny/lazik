@@ -70,7 +70,10 @@ class ObiektGeom: public UklWsp
                   );
     bool Przelicz_i_Zapisz_Wierzcholki();
 
-    virtual Tkolizji CzyKolizja(shared_ptr<Lazik> &laz){};
+
+    bool zczytaj(obrys przeszkoda);
+
+    virtual Tkolizji SprawdzKolizje(shared_ptr<Lazik> &lazik){};
 };
 
 
