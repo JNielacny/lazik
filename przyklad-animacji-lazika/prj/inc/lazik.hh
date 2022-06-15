@@ -18,7 +18,7 @@ class Lazik: public ObiektGeom
 
 
     public:
-    /*Lazik(){wypadkowa=0;}*/
+    Lazik(){wypadkowa=0;}
     Lazik(const char *sNazwaPliku_BrylaWzorcowa, 
           const char *sNazwaObiektu, 
           int KolorID): ObiektGeom(sNazwaPliku_BrylaWzorcowa, 
@@ -61,6 +61,7 @@ class Lazik: public ObiektGeom
                         cout << "--------------------------------------------------------------" << endl;
                         return;
                     }
+
                     else
                     if(SprawdzKolizje((*i))==TK_PrzejazdNadProbka)
                     {
@@ -69,7 +70,7 @@ class Lazik: public ObiektGeom
                             cout << "--------------------------------------------------------------" << endl;
                             cout <<                  "!!!!! Wykryto próbke!!!!!" << endl;
                             cout << "--------------------------------------------------------------" << endl;
-                        }
+                        } 
                     }
                 }
             }
@@ -128,6 +129,17 @@ class Lazik: public ObiektGeom
     void podnies(shared_ptr<PrbRegol> lazik)
     {
         ListaProbek.push_back(lazik);
+    }
+
+    
+    void wypiszprobki()
+    {
+        int ten=0;
+        for (list<shared_ptr<PrbRegol>>::iterator iter = ListaProbek.begin();iter!=ListaProbek.end()    ; iter++)
+        {
+            ten++;
+            cout <<ten<<":"<< (*iter)->WezNazweObiektu() << endl;
+        }
     }
 
     double get_szybkosc()const{return szybkosc;}

@@ -25,10 +25,12 @@ void wyswietlm()
     cout << "--------------------------------------------------------------" << endl;
     cout << "j - jazda na wprost" << endl;
     cout << "o - zmien orientacje" << endl;
+    cout << "z - podnies probkę" << endl;
     cout << "w - wybor lazika" << endl;
     cout << "m - wyswietl menu" << endl;
     cout << "p - wyswietl liste wszystkich obiektow" << endl;
     cout << "l - wyswietl liste wszystkich lazikow" << endl;
+    cout << "s - wyswietl liste podniesionych probek" << endl;
     cout << "q - wyjdz" << endl;
     cout << "--------------------------------------------------------------" << endl;
 
@@ -43,7 +45,7 @@ int main()
   char wybor = ' ';
   Wek3D wektor;
   srand(time(0));
-
+  Lazik lazik;
   scena Scena;
   Scena.Rysuj();  
   wyswietlm();
@@ -72,8 +74,8 @@ int main()
       Scena.porusz(0,droga,szybkosc);
     break;
 
-    /*
-    case 'k':
+/*    
+    case '8':
     for(int i=0;i<180;i+=5)
     {
       Scena.porusz(5,0,0);
@@ -89,8 +91,7 @@ int main()
       Scena.porusz(5,0,0);
       Scena.porusz(0,5,5);
     };
-    */
-
+*/
     break;
 
     case 'o':
@@ -115,6 +116,12 @@ int main()
       cout << "--------------------------------------------------------------" << endl;
       Scena.wypiszlaziki();
       cout << "--------------------------------------------------------------" << endl;
+      break;
+
+    case 's':
+      cout << "--------------------------------------------------------------" << endl;
+      lazik.wypiszprobki();
+      cout << "--------------------------------------------------------------" << endl;      
       break;
 
     case 'z':
