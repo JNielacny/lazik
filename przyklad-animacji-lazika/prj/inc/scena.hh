@@ -36,7 +36,7 @@ class scena
         void wypisz();
         void wypiszlaziki();
 
-
+        void usun();
 
         string nazwauzywanego(){return uzywany->WezNazweObiektu();}
         Wek3D polozenieuzywanego(){return uzywany->get_przesuniecia();}

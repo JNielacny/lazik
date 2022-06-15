@@ -2,9 +2,36 @@
 #define LAZIK_HH
 
 #include "ObiektGeom.hh"
+#include "probkaregolitu.hh"
 #include "lacze_do_gnuplota.hh"
 #include "unistd.h"
 
+
+class LazikFSR: public Lazik
+{
+    private:
+    list<shared_ptr<PrbRegol>> ListaProbek;
+    public:
+    Tkolizji SprawdzKolizje(shared_ptr<ObiektGeom> lazik)
+    {
+        if(zczytaj((*lazik).get_obrys()))
+        {
+            if(lazik->rozpoznaj() == 2)
+            return TK_Kolizja;
+
+            if(lazik->rozpoznaj() == 3)
+            return TK_PrzejazdNadProbka;
+        }
+        else
+        return TK_BrakKolizji;
+    }
+
+    void podnies(shared_ptr<PrbRegol> lazik)
+    {
+        ListaProbek.push_back(lazik);
+    }
+
+};
 
 class Lazik: public ObiektGeom
 {
@@ -22,6 +49,9 @@ class Lazik: public ObiektGeom
                                    sNazwaObiektu, 
                                    KolorID)
                                    {wypadkowa=0;}
+
+    int rozpoznaj(){return 2;}
+
 
     Tkolizji SprawdzKolizje(shared_ptr<ObiektGeom> lazik)
     {
@@ -102,6 +132,8 @@ class Lazik: public ObiektGeom
             
         }
     }*/
+
+    virtual void podnies(shared_ptr<PrbRegol> lazik) = 0;
 
     double get_szybkosc()const{return szybkosc;}
     double get_dlugosc()const{return dlugosc;}

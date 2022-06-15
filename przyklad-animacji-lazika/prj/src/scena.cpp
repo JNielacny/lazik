@@ -152,3 +152,23 @@ using namespace std;
             cout <<ten<<":"<< (*iter)->WezNazweObiektu() << endl;
         }
     }
+
+    void scena::usun()
+    {
+        if(uzywany->WezNazweObiektu()=="FSR")
+        {
+            for(list<shared_ptr<ObiektGeom>>::iterator i = ListaObiektow.begin(); i!=ListaObiektow.end(); i++)
+            {
+                if(uzywany->SprawdzKolizje(*i)==TK_PrzejazdNadProbka)
+                {
+                    uzywany->podnies(dynamic_pointer_cast<PrbRegol> (*i));
+                    ListaObiektow.erase(i);
+                    break;
+                }
+                else
+                {
+                    cout << "To nie lazik FSR" << endl;
+                }
+            }
+        }
+    }

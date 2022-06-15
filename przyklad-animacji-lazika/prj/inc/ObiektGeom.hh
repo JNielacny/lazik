@@ -75,6 +75,7 @@ class ObiektGeom: public UklWsp
     bool zczytaj(obrys przeszkoda);
 
     virtual Tkolizji SprawdzKolizje(shared_ptr<ObiektGeom> lazik) = 0;
+    virtual int rozpoznaj()=0;
 };
 
 
