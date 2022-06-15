@@ -5,6 +5,7 @@
 #include "lacze_do_gnuplota.hh"
 #include "unistd.h"
 
+
 class Lazik: public ObiektGeom
 {
     private:
@@ -22,16 +23,17 @@ class Lazik: public ObiektGeom
                                    KolorID)
                                    {wypadkowa=0;}
 
-    Tkolizji SprawdzKolizje(shared_ptr<Lazik> &lazik)
+    Tkolizji SprawdzKolizje(shared_ptr<ObiektGeom> lazik)
     {
-        if(Obrys.get_W_dolny_lewy()[0]<)
-
-
-
+        if(zczytaj((*lazik).get_obrys()))
+        {
+            return TK_Kolizja;
+        }
+        else
         return TK_BrakKolizji;
     }
 
-    void jedz(PzG::LaczeDoGNUPlota &Lacze)
+    void jedz(PzG::LaczeDoGNUPlota &Lacze, list<shared_ptr<ObiektGeom>> &ListaObiektow, shared_ptr<Lazik> uzywany)
     {
         
         Wek3D dane;
@@ -39,6 +41,17 @@ class Lazik: public ObiektGeom
         
         for(double i=0; i<dlugosc; i = i + szybkosc)
         {
+            for(list<shared_ptr<ObiektGeom>>::iterator i = ListaObiektow.begin(); i!=ListaObiektow.end(); i++)
+            {
+                if(uzywany!=(dynamic_pointer_cast<Lazik>(*i)))
+                {
+                    if(SprawdzKolizje((*i))==TK_Kolizja)
+                    {
+                        cout << "Kolizja - zatrzymano" << endl;
+                        return;
+                    }
+                }
+            }
             set_zmien_polozenie()=get_przesuniecia()+(RotacjaZ(wypadkowa) * dane);
                 Przelicz_i_Zapisz_Wierzcholki();
                     Lacze.Rysuj();

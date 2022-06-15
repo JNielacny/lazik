@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include <algorithm>
 #include "ObiektGeom.hh"
 
 
@@ -52,13 +53,18 @@ bool ObiektGeom::Przelicz_i_Zapisz_Wierzcholki(ostream &StrmWy, istream &StrmWe)
 
 bool ObiektGeom::zczytaj(obrys przeszkoda)
 {
+  obrys ob;
+  
   Wek2D l_lewa = Obrys.get_W_dolny_lewy();
-  Wek2D p_lewa = Obrys.get_W_dolny_lewy();
-  Wek2D l_prawa = przeszkoda.get_W_dolny_lewy();
-  Wek2D p_prawa = przeszkoda.get_W_dolny_lewy();
+  Wek2D p_lewa = przeszkoda.get_W_dolny_lewy();
+  Wek2D l_prawa = Obrys.get_W_gorny_prawy();
+  Wek2D p_prawa = przeszkoda.get_W_gorny_prawy();
 
-  if((l_lewa[0]>p_lewa[0] && l_lewa[0]<p_prawa[0] && l_lewa[1]>p_lewa[1] && l_lewa[1]<p_prawa[1]) || (l_prawa[0]>p_lewa[0] && l_prawa[0]<p_prawa[0] && l_prawa[1]>p_lewa[1] && l_prawa[1]<p_prawa[1]) || (l_lewa[0]>p_lewa[0] && l_lewa[0]<p_prawa[0] && l_prawa[1]>p_lewa[1] && l_prawa[1]<p_prawa[1]) || (l_prawa[0]>p_lewa[0] && l_prawa[0]<p_prawa[0] && l_lewa[1]>p_lewa[1] && l_lewa[1]<p_prawa[1]))
+
+
+  if((l_lewa[0]>p_lewa[0] && l_lewa[0]<p_prawa[0] && l_lewa[1]>p_lewa[1] && l_lewa[1]<p_prawa[1]) || (l_lewa[0]>p_lewa[0] && l_lewa[0]<p_prawa[0] && l_prawa[1]>p_lewa[1] && l_prawa[1]<p_prawa[1]) || (l_prawa[0]>p_lewa[0] && l_prawa[0]<p_prawa[0] && l_prawa[1]>p_lewa[1] && l_prawa[1]<p_prawa[1]) || (l_prawa[0]>p_lewa[0] && l_prawa[0]<p_prawa[0] && l_lewa[1]>p_lewa[1] && l_lewa[1]<p_prawa[1]))
   {
+    cout << "leeeeetsgoooo" << endl;
     return true;
   }
   else
@@ -88,12 +94,13 @@ bool ObiektGeom::Przelicz_i_Zapisz_Wierzcholki()
 
   if (StrmWe.fail())return false;
   do {
+    set_wsp()=MacObrotu*get_wsp();
+    set_wsp() = (get_wsp()^get_skala()) + przesuniecia;    
+    StrmWy << get_wsp() << endl;    
+
     wspx.push_back(get_wsp()[0]);
     wspy.push_back(get_wsp()[1]);
 
-    set_wsp()=MacObrotu*get_wsp();
-    set_wsp() = (get_wsp()^get_skala()) + przesuniecia;
-    StrmWy << get_wsp() << endl;
     ++Indeks_Wiersza;
     
     if (Indeks_Wiersza >= 4) {
@@ -104,10 +111,10 @@ bool ObiektGeom::Przelicz_i_Zapisz_Wierzcholki()
     StrmWe >> set_wsp();
     
   } while (!StrmWe.fail());
-    Obrys.set_W_dolny_lewy()[0]=*min(wspx.begin(), wspx.end());
-    Obrys.set_W_dolny_lewy()[1]=*min(wspy.begin(), wspy.end());
-    Obrys.set_W_gorny_prawy()[0]=*max(wspx.begin(), wspx.end());
-    Obrys.set_W_gorny_prawy()[1]=*max(wspy.begin(), wspy.end());
+    Obrys.set_W_dolny_lewy()[0]=*min_element(wspx.begin(), wspx.end())-5;
+    Obrys.set_W_dolny_lewy()[1]=*min_element(wspy.begin(), wspy.end())-5;
+    Obrys.set_W_gorny_prawy()[0]=*max_element(wspx.begin(), wspx.end())+5;
+    Obrys.set_W_gorny_prawy()[1]=*max_element(wspy.begin(), wspy.end())+5;
 
   if (!StrmWe.eof()) return false;
   zadany =0;  

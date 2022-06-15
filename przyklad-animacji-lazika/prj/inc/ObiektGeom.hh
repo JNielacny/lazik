@@ -55,6 +55,7 @@ class ObiektGeom: public UklWsp
     Wek3D get_przesuniecia()const{return przesuniecia;}
     Wek3D get_skala()const{return skala;}
     Mac3D get_MacObrotu()const{return MacObrotu;}
+    obrys get_obrys(){return Obrys;}
 
     ObiektGeom(const char* sNazwaPliku_BrylaWzorcowa, const char* sNazwaObiektu, int KolorID);
 
@@ -73,7 +74,7 @@ class ObiektGeom: public UklWsp
 
     bool zczytaj(obrys przeszkoda);
 
-    virtual Tkolizji SprawdzKolizje(shared_ptr<Lazik> &lazik){};
+    virtual Tkolizji SprawdzKolizje(shared_ptr<ObiektGeom> lazik) = 0;
 };
 
 

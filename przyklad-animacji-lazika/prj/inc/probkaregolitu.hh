@@ -12,7 +12,7 @@ class PrbRegol:public ObiektGeom
                                    KolorID)
                                    {}
     
-    Tkolizji CzyKolizja(shared_ptr<Lazik> &laz)
+    Tkolizji SprawdzKolizje(shared_ptr<ObiektGeom> lazik)
     {
         return TK_BrakKolizji;
     }

@@ -95,7 +95,7 @@ using namespace std;
             uzywany->set_dlugosc()=ruch;
                 uzywany->set_kat()=kat;
 
-        uzywany->jedz(Lacze);
+        uzywany->jedz(Lacze, ListaObiektow, uzywany);
             uzywany->obroc(Lacze);
     }
 
