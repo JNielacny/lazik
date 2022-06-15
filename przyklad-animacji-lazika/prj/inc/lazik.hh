@@ -6,33 +6,6 @@
 #include "lacze_do_gnuplota.hh"
 #include "unistd.h"
 
-
-class LazikFSR: public Lazik
-{
-    private:
-    list<shared_ptr<PrbRegol>> ListaProbek;
-    public:
-    Tkolizji SprawdzKolizje(shared_ptr<ObiektGeom> lazik)
-    {
-        if(zczytaj((*lazik).get_obrys()))
-        {
-            if(lazik->rozpoznaj() == 2)
-            return TK_Kolizja;
-
-            if(lazik->rozpoznaj() == 3)
-            return TK_PrzejazdNadProbka;
-        }
-        else
-        return TK_BrakKolizji;
-    }
-
-    void podnies(shared_ptr<PrbRegol> lazik)
-    {
-        ListaProbek.push_back(lazik);
-    }
-
-};
-
 class Lazik: public ObiektGeom
 {
     private:
@@ -40,6 +13,9 @@ class Lazik: public ObiektGeom
     double dlugosc;
     double kat;
     double wypadkowa;
+
+    list<shared_ptr<PrbRegol>> ListaProbek;
+
 
     public:
     /*Lazik(){wypadkowa=0;}*/
@@ -57,9 +33,12 @@ class Lazik: public ObiektGeom
     {
         if(zczytaj((*lazik).get_obrys()))
         {
+            if(lazik->rozpoznaj() == 2)
             return TK_Kolizja;
+
+            if(lazik->rozpoznaj() == 3)
+            return TK_PrzejazdNadProbka;
         }
-        else
         return TK_BrakKolizji;
     }
 
@@ -68,7 +47,7 @@ class Lazik: public ObiektGeom
         
         Wek3D dane;
         dane[1]=szybkosc;
-        
+        int d=0;
         for(double i=0; i<dlugosc; i = i + szybkosc)
         {
             for(list<shared_ptr<ObiektGeom>>::iterator i = ListaObiektow.begin(); i!=ListaObiektow.end(); i++)
@@ -77,11 +56,24 @@ class Lazik: public ObiektGeom
                 {
                     if(SprawdzKolizje((*i))==TK_Kolizja)
                     {
-                        cout << "Kolizja - zatrzymano" << endl;
+                        cout << "--------------------------------------------------------------" << endl;
+                        cout <<         "!!!!! KOLIZJA - lazik zostal zatrzymany !!!!!" << endl;
+                        cout << "--------------------------------------------------------------" << endl;
                         return;
+                    }
+                    else
+                    if(SprawdzKolizje((*i))==TK_PrzejazdNadProbka)
+                    {
+                        for(d=d; d<1; d++)
+                        {
+                            cout << "--------------------------------------------------------------" << endl;
+                            cout <<                  "!!!!! Wykryto próbke!!!!!" << endl;
+                            cout << "--------------------------------------------------------------" << endl;
+                        }
                     }
                 }
             }
+            
             set_zmien_polozenie()=get_przesuniecia()+(RotacjaZ(wypadkowa) * dane);
                 Przelicz_i_Zapisz_Wierzcholki();
                     Lacze.Rysuj();
@@ -133,7 +125,10 @@ class Lazik: public ObiektGeom
         }
     }*/
 
-    virtual void podnies(shared_ptr<PrbRegol> lazik) = 0;
+    void podnies(shared_ptr<PrbRegol> lazik)
+    {
+        ListaProbek.push_back(lazik);
+    }
 
     double get_szybkosc()const{return szybkosc;}
     double get_dlugosc()const{return dlugosc;}
@@ -142,5 +137,24 @@ class Lazik: public ObiektGeom
     double &set_szybkosc(){return szybkosc;}
     double &set_dlugosc(){return dlugosc;}
     double &set_kat(){return kat;}
+};
+
+
+class LazikFSR: public Lazik
+{
+    public:
+    Tkolizji SprawdzKolizje(shared_ptr<ObiektGeom> lazik)
+    {
+        if(zczytaj((*lazik).get_obrys()))
+        {
+            if(lazik->rozpoznaj() == 2)
+            return TK_Kolizja;
+
+            if(lazik->rozpoznaj() == 3)
+            return TK_PrzejazdNadProbka;
+        }
+        else
+        return TK_BrakKolizji;
+    }
 };
 #endif

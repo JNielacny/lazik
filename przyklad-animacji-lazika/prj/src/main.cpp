@@ -119,6 +119,7 @@ int main()
 
     case 'z':
       Scena.usun();
+      break;
 
     case 'q':
       cout << "Prgoram został zamkniety" << endl;

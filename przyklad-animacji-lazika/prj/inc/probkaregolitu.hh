@@ -17,6 +17,7 @@ class PrbRegol:public ObiektGeom
     int rozpoznaj(){return 3;}
     Tkolizji SprawdzKolizje(shared_ptr<ObiektGeom> lazik)
     {
+        if(lazik){};
         return TK_BrakKolizji;
     }
 };

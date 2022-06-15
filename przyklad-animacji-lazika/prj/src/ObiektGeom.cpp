@@ -55,16 +55,16 @@ bool ObiektGeom::zczytaj(obrys przeszkoda)
 {
   obrys ob;
   
-  Wek2D l_lewa = Obrys.get_W_dolny_lewy();
-  Wek2D p_lewa = przeszkoda.get_W_dolny_lewy();
-  Wek2D l_prawa = Obrys.get_W_gorny_prawy();
-  Wek2D p_prawa = przeszkoda.get_W_gorny_prawy();
+  Wek2D lewa2 = Obrys.get_W_dolny_lewy();
+  Wek2D lewa1 = przeszkoda.get_W_dolny_lewy();
+  Wek2D prawa2 = Obrys.get_W_gorny_prawy();
+  Wek2D prawa1 = przeszkoda.get_W_gorny_prawy();
 
 
 
-  if((l_lewa[0]>p_lewa[0] && l_lewa[0]<p_prawa[0] && l_lewa[1]>p_lewa[1] && l_lewa[1]<p_prawa[1]) || (l_lewa[0]>p_lewa[0] && l_lewa[0]<p_prawa[0] && l_prawa[1]>p_lewa[1] && l_prawa[1]<p_prawa[1]) || (l_prawa[0]>p_lewa[0] && l_prawa[0]<p_prawa[0] && l_prawa[1]>p_lewa[1] && l_prawa[1]<p_prawa[1]) || (l_prawa[0]>p_lewa[0] && l_prawa[0]<p_prawa[0] && l_lewa[1]>p_lewa[1] && l_lewa[1]<p_prawa[1]))
+  if((lewa1[0]>lewa2[0] && lewa1[0]<prawa2[0] && lewa1[1]>lewa2[1] && lewa1[1]<prawa2[1]) || (lewa1[0]>lewa2[0] && lewa1[0]<prawa2[0] && prawa1[1]>lewa2[1] && prawa1[1]<prawa2[1]) || (prawa1[0]>lewa2[0] && prawa1[0]<prawa2[0] && prawa1[1]>lewa2[1] && prawa1[1]<prawa2[1]) || (prawa1[0]>lewa2[0] && prawa1[0]<prawa2[0] && lewa1[1]>lewa2[1] && lewa1[1]<prawa2[1]))
   {
-    cout << "leeeeetsgoooo" << endl;
+  //  cout << "leeeeetsgoooo" << endl;
     return true;
   }
   else

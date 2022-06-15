@@ -67,8 +67,8 @@ using namespace std;
 
         for(int iter=0; iter<10; iter++)
         {
-            przesun[0]=rand()%180-90;
-                przesun[1]=rand()%180-90;
+            przesun[0]=rand()%250-100;
+                przesun[1]=rand()%250-100;
             
             skala[0]=4;
                 skala[1]=4;
@@ -157,18 +157,27 @@ using namespace std;
     {
         if(uzywany->WezNazweObiektu()=="FSR")
         {
+ //           cout << "siugabeja" << endl;
             for(list<shared_ptr<ObiektGeom>>::iterator i = ListaObiektow.begin(); i!=ListaObiektow.end(); i++)
             {
                 if(uzywany->SprawdzKolizje(*i)==TK_PrzejazdNadProbka)
                 {
                     uzywany->podnies(dynamic_pointer_cast<PrbRegol> (*i));
+                    cout << "--------------------------------------------------------------" << endl;
+                    cout << "Probka: " << (*i)->WezNazweObiektu() << " została zebrana" << endl;
+                    cout << "--------------------------------------------------------------" << endl;
+                    Lacze.UsunNazwePliku((*i)->WezNazwePliku_BrylaRysowana());                    
                     ListaObiektow.erase(i);
+
+                    Rysuj();
+                    Lacze.Rysuj();
                     break;
-                }
-                else
-                {
-                    cout << "To nie lazik FSR" << endl;
                 }
             }
         }
+        else
+        cout << "--------------------------------------------------------------" << endl;
+        cout << "                 !!!!!To nie lazik FSR!!!!!" << endl;
+        cout << "--------------------------------------------------------------" << endl;
+
     }
